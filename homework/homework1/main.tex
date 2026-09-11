@@ -1,0 +1,124 @@
+\documentclass{exam}
+\usepackage{../../shah350}
+
+\hypersetup{colorlinks=true, linktoc=section, linkcolor=blue}
+
+\pagestyle{headandfoot}
+\firstpageheadrule
+\runningheadrule
+\firstpageheader{Prof. Lepowsky \\ Linear Algebra}{Homework \#1}{Jeevan Shah}
+\runningheader{Linear Algebra \\ Homework \#1}{}{Shah}
+\firstpagefooter{}{\thepage}{}
+\runningfooter{ }{\thepage}{ }
+
+\printanswers
+
+
+\begin{document}
+  \colorbox{red}{\underline{$1.2.7$}:}
+  \begin{solution}
+      We must show that $f = g$ in $\mathcal{F}(S, \RR)$ for $S = \braces{0, 1}$ and $f(t) = 2t + 1$ and $g(t) = 1 + 4t - 2t^2$. It will suffice to show $f(0) = g(0)$ and $f(1) = g(1)$: 
+    \begin{align*}
+      f(0) &= 2(0) + 1 = 1 = 1 + 4(0) - 2(0)^{2} = g(0) \\
+      f(1) &= 2(1) + 1 = 3 = 1 + 4(1) - 2(1)^2 = g(1)
+    \end{align*}
+    Thus $f = g$. \\ We must now show $f + g = h$ for $h(t) = 5^{t} + 1$. Once again we have: 
+    \begin{align*}
+      (f + g)(0) &= f(0) + g(0) = 1 + 1 = 2 = 5^{0} + 1 = h(0) \\
+      (f + g)(1) &= f(1) + g(1) = 3 + 3 = 6 = 5^{1} + 1 = h(1) 
+    \end{align*}
+  \end{solution}
+
+  \colorbox{red}{\underline{$1.2.8:$}} 
+  \begin{solution}
+    We must show that $(a + b)(x + y) = ax + by + bx + by$ for any $x, y \in V$ and $a, b \in \FF$ for $V$ a vector space. We have:
+    \begin{align*}
+      (a + b)(x + y) &= (a + b)x + (a + b)y \tag*{(VS7)} \\
+      &= ax + by + ay + by \tag*{(VS8)} \\
+      &= ax + by + bx + by \tag*{(VS1)}
+    \end{align*}
+    which was to be shown. Note that parenthesis are not needed on the RHS due to (VS2) which by repeated application allows us to defined the addition of any finite numbers of vectors unambiguously as any grouping of parenthesis is equivalent under vector addition in $V$.
+  \end{solution}
+
+  \colorbox{red}{\underline{$1.2.11:$}}
+  \begin{solution}
+    \begin{proof}[Proof (Corollary 1 of Theorem 1.1)]
+      Suppose that both ${0}, {0'} \in V$ satisfy (VS3). Then ${x} + {0} = x \,\forall {x} \in V$ and also ${x} + {0'} = x \,\forall {x} \in V$. Take ${x} = {0'}$ in the first equation to get ${0'} + {0} = {0'}$. Applying (VS3) with ${0'}$ we see ${0'} + {0} = {0'} + {0'}$. It follows from Theorem $1.1'$ that ${0'} = {0}$ which was to be shown.
+    \end{proof}
+
+    \begin{proof}[Proof (Corollary 2 of Theorem 1.1)]
+      Suppose that both $y$ and $y'$ satisfy (VS4) for $y, y' \in V$. Then, $x + y = \vec{0}$ and $x + y' = \vec{0}$ for $x \in V$. By Corollary $1$, $\vec{0}$ is unique so we have $x + y = x + y'$ and thus $y = y'$ by Theorem $1.1'$.
+    \end{proof}
+
+    \begin{proof}[Proof (Theorem 1.2(c))]
+      We must show $a\vec{0} = \vec{0}$ for any $a \in \FF$. But, 
+      \begin{align*}
+        a\vec{0} + a\vec{0} &= a(\vec{0} + \vec{0}) \tag*{(VS7)} \\
+        &= a\vec{0} \tag*{(VS3)} \\
+        &= a\vec{0} + \vec{0} \tag*{(VS3)} \\
+        &\Rightarrow a\vec{0} = \vec{0} \tag*{(Thm1.1')}
+      \end{align*}
+      which was to be shown.
+    \end{proof}
+  \end{solution}
+
+  \newpage
+
+  \colorbox{red}{\underline{1.2.11:}}
+  \begin{solution}
+    We must show $V = \braces{\vec{0}}$ is a vector space over $\FF$. We define $\vec{0} + \vec{0} = \vec{0}$ and $c\vec{0} = \vec{0}$ for $c \in \FF$. In order to show $V$ is a vector space we must show that (VS1) - (VS8) hold true. 
+
+    \hspace{0.5cm}(VS1): (VS1) is immediate by definition of vector addition in $V$ 
+
+    \hspace{0.5cm}(VS2): We have that $(\vec{0} + \vec{0}) + \vec{0} = \vec{0} + \vec{0} = \vec{0} = \vec{0} + \vec{0} = \vec{0} + (\vec{0} + \vec{0})$ and so (VS2) holds.
+
+    \hspace{0.5cm}(VS3): Using the fact that $V$ is a singleton set, $x = \vec{0}$ and $\mathit{0} = \vec{0}$ where $\mathit{0}$ is the addative identity in (VS3). Thus $x + \mathit{0} = \vec{0} + \vec{0} = \vec{0}$ by definition of vector addition, thus (VS3) holds.
+
+    \hspace{0.5cm}(VS4): Once again, leveraging the fact that $V$ is a singleton it must be the case that $x = y = \vec{0}$ and so by definition, $\vec{0} + \vec{0} = \vec{0}$ and (VS4) holds.
+
+    \hspace{0.5cm}(VS5): By definition of scalar multiplication in $V$ (VS5) is trivial as $1 \in \FF$ and $c\vec{0} = \vec{0} \,\forall c \in \FF$.
+
+    \hspace{0.5cm}(VS6): Also using the defintiion of scalar multiplication and the fact that for $a, b \in \FF, ab \in FF$ (by field axioms), $(ab)\vec{0} = \vec{0} = a(b\vec{0}) = a\vec{0} = \vec{0}$, showing (VS6) is also true.
+
+    \hspace{0.5cm}(VS7): Similarly we see that for $a \in \FF, a(\vec{0} + \vec{0}) = a\vec{0} + b\vec{0} = \vec{0}$ (again, since $V$ is a singleton we may take $x = y = \vec{0}$ for (VS7)) showing (VS7).
+
+    \hspace{0.5cm}(VS8): Finally, field axioms again tell us that for $a, b \in \FF, a + b \in \FF$  so $(a + b)\vec{0} = \vec{0} = a\vec{0} + b\vec{0}$ by definition of scalar multiplication. 
+
+    Since (VS1)-(VS8) have been found to be true, we may now conclude that $V$ is a vector space over $\FF$. \qed
+  \end{solution}
+
+  \colorbox{red}{\underline{1.2.12:}}
+  \begin{solution}
+    We must show $V = \braces{f: \RR \to \RR \mid f(t) = f(-t)\, \forall t \in \RR}$ is a vector space. Because any $f \in V$ is $f: \RR \to \RR$, $f(t) \in \RR$ so (VS1)-(VS8) automatically hold due to the field axioms of $\RR$.
+  \end{solution}
+
+  \colorbox{red}{\underline{1.2.17:}}
+  \begin{solution}
+    $V$ \textbf{cannot} be a vecgtor space since for $(a_1, a_2) \in V, 1(a_1, a_2) = (a_1, 0) \neq (a_1, a_2)$ for $a_2 \neq 0$ which violates (VS5).
+  \end{solution}
+
+  \colorbox{red}{\underline{1.3.5:}}
+  \begin{solution}
+    We must show $A + A^t$ is symmetric for any square matrix $A$. It is equivalent to show that $(A + A^{t})^{t} = A + A^{t}$. But, 
+    \[
+      (A + A^{t})^t =  A^{t} + (A^{t})^{t} = A^{t} + A = A + A^{t}
+    \]
+    which was to be shown.
+  \end{solution}
+
+  \colorbox{red}{\underline{1.3.8}}
+  \begin{solution}
+    \begin{parts}
+      \part $W_1$ is \textbf{not} a subspace of $\RR^{3}$. Take $c = (1, 0, 0) \in \RR^{3}$ and any $\vec{x} = (a_1, a_2, a_3) \in W_1$. By definition of $W_1$, $\vec{x} = (3a_2, a_2, -a_2)$ but $c\vec{x} = (3a_2, 0, 0) \not\in W_1$, thus Thm1.3(c) is not true and $W_1$ canot be a subspace of $\RR^{3}$.
+
+      \part $W_2$ is \textbf{not} a subspace of $\RR^{3}$ since $\vec{0} \not\in W_2$ since $a_1 = a_3 + 2$ implies that $a_1 = 0$ and $a_3 = 0$ cannot be true at the same time and thus $W_1$ cannot be a subspace of $\RR^{3}$.
+    \end{parts}
+  \end{solution}
+
+  \colorbox{red}{\underline{1.3.11}}
+  \begin{solution}
+    $W$ \textbf{is} a subspace of $P(\FF)$. By definition $\vec{0} \in W$. Also, for $x, y \in W, x + y \in W$ since adding two polynomials of equal degree will always result in another polynomial of exactly degree $n$ or $\vec{0}$. Finally, for $c \in \FF$ and $\vec{x} \in W$, $c\vec{x} \in W$ since scalar multiplcation cannot change the degree of polynomial. Thus, by Thm1.3 $W$ is a subspace of $P(\FF)$ for $n \geq 1$.
+  \end{solution}
+
+  \footnotetext{\LaTeX\, code for this document can be found on github \href{https://github.com/jeevanshah07/MATH350/blob/main/homework/homework1/main.tex}{\underline{here}}}
+\end{document}
