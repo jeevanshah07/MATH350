@@ -37,7 +37,33 @@
       &= ax + by + ay + by \tag*{(VS8)} \\
       &= ax + by + bx + by \tag*{(VS1)}
     \end{align*}
-    which was to be shown. Note that parenthesis are not needed on the RHS due to (VS2) which by repeated application allows us to defined the addition of any finite numbers of vectors unambiguously as any grouping of parenthesis is equivalent under vector addition in $V$.
+    which was to be shown. Note that parenthesis are not needed on the RHS due to (VS2) which by repeated application allows us to defined the addition of any finite numbers of vectors unambiguously as any grouping of parenthesis is equivalent under vector addition in $V$. We state 
+    \[
+      \text{(VS2): } \forall\, \vec{x}, \vec{y}, \vec{z} \in V, (\vec{x} + \vec{y}) + \vec{z} = \vec{x} + (\vec{y} + \vec{z}).
+    \] Now, specifically for $w, x, y, z \in V$ we have 
+    \[
+      (w + x) + y = w + (x + y) \Rightarrow ((w + x) + y) + z = (w + (x + y)) + z 
+    \]
+    by (VS2) and then adding $z$ to both sides. It then follows that 
+    \[
+      (w + (x + y)) + z = w + ((x + y) + z) 
+    \]
+    through (VS2) with $\vec{y} = (x + y)$. Then, 
+    \[
+      (x + y) + z = x + (y + z) \Rightarrow w + ((x + y) + z) = w + (x + (y + z)) 
+    \]
+    once again by (VS2) and then adding $w$ to both sides (from the left). Applying (VS2) with $\vec{x} = (w + x)$, we see 
+    \[
+      ((w + x) + y) + z = (w + x) + (y + z) 
+    \]
+    so 
+    \begin{align*}
+      ((w + x) + y) + z &= (w + (x + y) + z) \\
+      &= w + ((x + y) + z) \\
+      &= w + (x + (y + z)) \\
+      &= (w + x) + (y + z)
+    \end{align*}
+    and thus parenthesis are not needed. \qed
   \end{solution}
 
   \colorbox{red}{\underline{$1.2.11:$}}
@@ -61,8 +87,6 @@
       which was to be shown.
     \end{proof}
   \end{solution}
-
-  \newpage
 
   \colorbox{red}{\underline{1.2.11:}}
   \begin{solution}
@@ -89,12 +113,41 @@
 
   \colorbox{red}{\underline{1.2.12:}}
   \begin{solution}
-    We must show $V = \braces{f: \RR \to \RR \mid f(t) = f(-t)\, \forall t \in \RR}$ is a vector space. Because any $f \in V$ is $f: \RR \to \RR$, $f(t) \in \RR$ so (VS1)-(VS8) automatically hold due to the field axioms of $\RR$.
+    We must show $V = \braces{f: \RR \to \RR \mid f(t) = f(-t)\, \forall t \in \RR}$ is a vector space. First we must show that $V$ is closed under vector addition and scalar multiplication. Consider $f, g \in V$, by definition of vector addition we have that 
+    \[
+      (f + g)(s) = f(s) + g(s) = f(-s) + g(-s) = (f + g)(-s)
+    \] and so $f + g \in V$. As well, consider some $c \in \RR$ and $f \in V$, then
+    \[
+      cf(s) = cf(-s)
+    \]
+    and so $cf \in V$ as well. We now show that $VS1 - VS8$ hold. 
+
+    \hspace{0.5cm}(VS1): (VS1) is immediate by the fact that $f, g \in V$ are real valued when evaluated at some $c \in \RR$ and addition in $\RR$ is communtative. 
+
+    \hspace{0.5cm}(VS2): (VS2) is also immediate by the fact that $f, g, h \in V$ are real valued when evaluated at some arbitrary $c \in \RR$ and addition in $\RR$ is associative.
+
+    \hspace{0.5cm}(VS3): We define the function $I: \RR \to \RR$ by $s \mapsto 0$ so that $I(s) = I(-s) = 0$ for any $s \in \RR$. It follows that $I \in V$. We claim that $I$ is the additive identity for $V$. Consider any $f \in V$ and notice 
+    \[
+      (f + I)(s) = f(s) + I(s) = f(s) + 0 = f(s)    
+    \] 
+    where $0 \in RR$ is the additive identity of the real numbers. Thus, $I \in V$ and $x + I = x$ for all $x \in V$.
+
+    \hspace{0.5cm}(VS4): Since $V$ is closed under scalar multiplication, if $f \in V$ then $-1 * f = -f \in V$ so $(f + (-f))(s) = f(s) + (-f(s)) = 0$.
+
+    \hspace{0.5cm}(VS5): As before, (VS5) is immediate since $f \in V$ is real when evaluated at any $c \in \RR$ so $1 * f(c) = f(c)$.
+
+    \hspace{0.5cm}(VS6): Also using the defintiion of scalar multiplication and the fact that for $a, b \in \RR, ab \in RR$ (by field axioms), $(ab)f = a(bf)$.
+
+    \hspace{0.5cm}(VS7): Similarly we see that for $c \in \RR, f(c) \in \RR$ so for $a \in \RR$ and $f, g \in V$, $a(f + g)(s) = af(s) + ag(s)$ by field axioms
+
+    \hspace{0.5cm}(VS8): Finally, field axioms again tell us that for $a, b \in \RR, a + b \in \RR$ so for $f \in V$ and some $c \in \RR, (a + b) f(s) = af(s) + bf(s)$.
+
+    Because any $f \in V$ is $f: \RR \to \RR$, $f(t) \in \RR$ so (VS1)-(VS8) automatically hold due to the field axioms of $\RR$.
   \end{solution}
 
   \colorbox{red}{\underline{1.2.17:}}
   \begin{solution}
-    $V$ \textbf{cannot} be a vecgtor space since for $(a_1, a_2) \in V, 1(a_1, a_2) = (a_1, 0) \neq (a_1, a_2)$ for $a_2 \neq 0$ which violates (VS5).
+    $V$ \textbf{cannot} be a vector space since for $(a_1, a_2) \in V, 1(a_1, a_2) = (a_1, 0) \neq (a_1, a_2)$ for $a_2 \neq 0$ which violates (VS5).
   \end{solution}
 
   \colorbox{red}{\underline{1.3.5:}}
@@ -114,6 +167,8 @@
       \part $W_2$ is \textbf{not} a subspace of $\RR^{3}$ since $\vec{0} \not\in W_2$ since $a_1 = a_3 + 2$ implies that $a_1 = 0$ and $a_3 = 0$ cannot be true at the same time and thus $W_1$ cannot be a subspace of $\RR^{3}$.
     \end{parts}
   \end{solution}
+
+  \newpage
 
   \colorbox{red}{\underline{1.3.11}}
   \begin{solution}
