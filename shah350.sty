@@ -45,6 +45,26 @@
 \newtheorem{lemma}{Lemma}[section]
 \newtheorem{remark}{Remark}
 
+\newcommand{\Span}[1]{\ensuremath\text{Span}\braces{#1}}
+\newcommand{\rank}[1]{\ensuremath\text{rank}\left(#1\right)}
+\newcommand{\Col}[1]{\ensuremath\text{Col}\left(#1\right)}
+\newcommand{\Row}[1]{\ensuremath\text{Row}\left(#1\right)}
+\newcommand{\Nul}[1]{\ensuremath\text{Nul}\left(#1\right)}
+\newcommand{\nul}[1]{\ensuremath\text{nul}\left(#1\right)}
+
+\newenvironment{amatrix}[1]{%
+  \left(\begin{array}{@{}*{#1}{c}|c@{}}
+}{%
+  \end{array}\right)
+}
+
+\newenvironment{Lamatrix}[2]{%
+  % #1 = total columns, #2 = split position (vertical line after #2-th column)
+  \left(\begin{array}{@{}*{\the\numexpr#2\relax}{c}|*{\the\numexpr#1-#2\relax}{c}@{}}%
+}{%
+  \end{array}\right)
+}
+
 \newenvironment{thm}[1]{\begin{tcolorbox}[colback=LightSalmon1, breakable, sharp corners]\begin{theorem}[#1]}{\end{theorem}\end{tcolorbox}}
 
 \newenvironment{prop}[1]{\begin{tcolorbox}[colback=DarkOrchid2!40!white, breakable, sharp corners]\begin{proposition}[#1]}{\end{proposition}\end{tcolorbox}}
