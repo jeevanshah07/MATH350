@@ -1,0 +1,198 @@
+\documentclass{exam}
+\usepackage{../../shah350}
+
+\hypersetup{colorlinks=true, linktoc=section, linkcolor=blue}
+
+\pagestyle{headandfoot}
+\firstpageheadrule
+\runningheadrule
+\firstpageheader{Prof. Lepowsky \\ Linear Algebra}{Homework \#2}{Jeevan Shah}
+\runningheader{Linear Algebra \\ Homework \#2}{}{Shah}
+\firstpagefooter{}{\thepage}{}
+\runningfooter{ }{\thepage}{ }
+
+\printanswers
+
+
+\begin{document}
+  \colorbox{red}{\underline{$1.3.19$}:}
+  \begin{solution}
+    \begin{proof}
+      $(\Rightarrow)$ Assume that $W_1 \cup W_2$ is a subspace of $V$. We must show that either $W_1 \subseteq W_2$ or $W_2 \subseteq W_1$. By way of contradiction we will suppose that $W_1 \not\subseteq W_2$ and $W_2 \not\subseteq W_1$ so that $\exists\, v \in W_1, v \not\in W_2$ and $u \in W_2, u \not\in W_1$. Since $W_1 \cup W_2$ is a subspace it is closed under addition and $u + v \in W_1 \cup W_2$ and thus either $u + v \in W_1$ or $u + v \in W_2$. WLOG take $u + v \in W_1$ so that its additive inverse $-(u + v) \in W_1$. Since $W_1$ is also a subspace itself, it is also closed under vector addition and so $u + (-(u + v)) \in W_1 \Rightarrow u - u + v \in W_1 \Rightarrow v \in W_1$ which is a contradiction. An identical argument exists if $u + v \in W_2$. It follows that either $W_1 \subseteq W_2$ or $W_2 \subseteq W_1$. \\
+      $(\Leftarrow)$ Assume that $W_1 \subseteq W_2$ or $W_2 \subseteq W_1$. It follows that $W_1 \cup W_2 = W_1$ or $W_1 \cup W_2 = W_2$, either way the union is a subspace by assumption and we are done. 
+    \end{proof}
+  \end{solution}
+
+  \colorbox{red}{\underline{$1.4.4a$}:}
+  \begin{solution}
+    Consider the matrix form 
+    \begin{align*}
+      \begin{amatrix}{2} 
+        1 & 1 & 1 \\
+        2 & 3 & 0 \\
+        -1 & 0 & -3 \\
+        1 & -1 & 5
+      \end{amatrix} 
+      \xrightarrow[r_4 \to r_4 - r_1]{\substack{r_2 \to r_2 - 2_r1 \\ r_3 \to r_3 + r_1}}
+      \begin{amatrix}{2} 
+        1 & 1 & 1 \\
+        0 & 1 & -2 \\
+        0 & 1 & -2 \\
+        0 & -2 & 4
+      \end{amatrix}
+      &\xrightarrow{r_2 \to -\frac{1}{2}r_4}
+      \begin{amatrix}{2}
+        1 & 1 & 1 \\
+        0 & 1 & -2 \\
+        0 & 0 & 0 \\
+        0 & 0 & 0
+      \end{amatrix}
+      \Rightarrow X = \begin{pmatrix}
+        x_1 \\ x_2 
+      \end{pmatrix}
+      = \begin{pmatrix}
+        3 \\ -2
+      \end{pmatrix}.
+    \end{align*}
+    Thus, the system is consisten and the first polynomial \textbf{is} a linear combination of the others.
+  \end{solution}
+
+  \colorbox{red}{\underline{$1.4.5g$}:}
+  \begin{solution}
+    Consider the matrix form (with the $2 \times 2$ matrix represented as column vectors):
+    \begin{align*}
+      \begin{amatrix}{3}
+        1 & 0 & 1 & 1 \\
+        -1 & 0 & 0 & -3 \\
+        0 & 1 & 1 & 2 \\
+        0 & 1 & 0 & 4
+      \end{amatrix}
+      \xrightarrow{r_2 \to r_2 + r_1} 
+      \begin{amatrix}{3}
+        1 & 0 & 1 & 1 \\
+        0 & 0 & 1 & -2 \\
+        0 & 1 & 1 & 2 \\
+        0 & 1 & 0 & 4
+      \end{amatrix}
+      \xrightarrow{r_2 \leftrightarrow r_3} 
+      &\begin{amatrix}{3}
+        1 & 0 & 1 & 1 \\
+        0 & 1 & 1 & 2 \\
+        0 & 0 & 1 & -2 \\
+        0 & 1 & 0 & 4
+      \end{amatrix} \\
+      \xrightarrow{r_4 \to r_4 - r_2}
+      &\begin{amatrix}{3}
+        1 & 0 & 1 & 1 \\
+        0 & 1 & 1 & 2 \\
+        0 & 0 & 1 & -2 \\
+        0 & 0 & -1 & 2 
+      \end{amatrix} \\
+      \xrightarrow{r_4 \to r_4 + r_3} 
+      &\begin{amatrix}{3}
+        1 & 0 & 1 & 1 \\
+        0 & 1 & 1 & 2 \\
+        0 & 0 & 1 & -2 \\
+        0 & 0 & 0 & 0 
+      \end{amatrix}
+      \Rightarrow X = \begin{pmatrix}
+        x_1 \\ x_2 \\ x_3 \\ x_4 
+      \end{pmatrix}
+      = \begin{pmatrix}
+        3 \\ 4 \\ -2 \\ 0
+      \end{pmatrix}
+    \end{align*}
+    Thus the system is consistent and so the matrix $\left(\begin{matrix}
+      1 & 2 \\ -3 & 4
+    \end{matrix}\right)$ \textbf{is} a linear combination of the other matricies and is thus included in their span.
+  \end{solution}
+
+  \newpage 
+
+  \colorbox{red}{\underline{$1.4.6$}:}
+  \begin{solution}
+    Consider 
+    \[
+      A = \begin{pmatrix}
+        1 & 1 & 0 \\
+        1 & 0 & 1 \\
+        0 & 1 & 1
+      \end{pmatrix}
+      \xrightarrow{r_2 \to r_2 - r_1}
+      \begin{pmatrix}
+        1 & 1 & 0 \\
+        0 & -1 & 1 \\
+        0 & 1 & 1
+      \end{pmatrix}
+      \xrightarrow{r_3 \to r_3 \to r_2}
+      \begin{pmatrix}
+        1 & 1 & 0 \\
+        0 & -1 & 1 \\
+        0 & 0 & 2
+      \end{pmatrix}
+    \]
+    thus $\rank{A} = \dim{\left(\FF^3\right)} = 3$ and hence the $3$ vectors generate $\FF^3$.
+  \end{solution}
+
+  \colorbox{red}{\underline{$1.5.2d$}:}
+  \begin{solution}
+    Consider 
+    \[
+      A = \begin{pmatrix}
+        1 & 0 & -2 \\
+        0 & 2 & 3 \\
+        -1 & 0 & 2 \\
+        0 & 4 & 6 
+      \end{pmatrix}
+      \xrightarrow{r_3 \to r_3 + r_1}
+      \begin{pmatrix}
+        1 & 0 & -2 \\
+        0 & 2 & 3 \\
+        0 & 0 & 0 \\
+        0 & 4 & 6
+      \end{pmatrix}
+      \xrightarrow{r_4 \to r_4 - 2r_2}
+      \begin{pmatrix}
+        1 & 0 & -2 \\
+        0 & 2 & 3 \\
+        0 & 0 & 0 \\
+        0 & 0 & 0 
+      \end{pmatrix} 
+      \Rightarrow X = x_3\begin{pmatrix}
+        2 \\
+        \frac{3}{2} \\
+        1
+      \end{pmatrix}
+    \]
+    for $x_3$ free. Since $\rank{A} = 2 < 3$ the set is linearly dependent because there are infinitely many solutions to the homogenous system.
+  \end{solution}
+
+  \colorbox{red}{\underline{$1.5.6$}:}
+  \begin{solution}
+    Suppose scalars $a_{ij} \in F$ (for $1 \le i \le m$ and $1 \le j \le n$) satisfy
+    \[
+      \sum_{i=1}^{m} \sum_{j=1}^{n} a_{ij} E^{ij} = O,
+    \]
+    where $O$ is the $m \times n$ zero matrix. We must show that every $a_{ij} = 0$.
+ 
+    Fix any $k$ and $l$ with $1 \le k \le m$ and $1 \le l \le n$. By the definition of $E^{ij}$, its $(k,l)$ entry is
+    \[
+      (E^{ij})_{kl} =
+      \begin{cases}
+        1 & \text{if } (i,j) = (k,l), \\
+        0 & \text{otherwise.}
+      \end{cases}
+    \]
+    Since matrix addition and scalar multiplication act entrywise, taking the $(k,l)$ entry of both sides of the equation above gives
+    \[
+      \sum_{i=1}^{m} \sum_{j=1}^{n} a_{ij} \,(E^{ij})_{kl} = 0.
+    \]
+    Every term in this double sum vanishes except the one with $(i,j) = (k,l)$, which contributes $a_{kl} \cdot 1$. Hence the left-hand side equals $a_{kl}$, and so
+    \[
+      a_{kl} = 0.
+    \]
+    
+    Because $k$ and $l$ were arbitrary, every coefficient $a_{ij}$ is zero. Thus the only linear combination of the $E^{ij}$ equal to $O$ is the trivial one, and the set is linearly independent.
+  \end{solution}
+  \footnotetext{\LaTeX\, code for this document can be found on github \href{https://github.com/jeevanshah07/MATH350/blob/main/homework/homework2/main.tex}{\underline{here}}}
+\end{document}
