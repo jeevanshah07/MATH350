@@ -1,0 +1,408 @@
+\documentclass{exam}
+\usepackage{../../shah350}
+
+\hypersetup{colorlinks=true, linktoc=section, linkcolor=blue}
+
+\pagestyle{headandfoot}
+\firstpageheadrule
+\runningheadrule
+\firstpageheader{Prof. Lepowsky \\ Linear Algebra}{Homework \#3}{Jeevan Shah}
+\runningheader{Linear Algebra \\ Homework \#3}{}{Shah}
+\firstpagefooter{}{\thepage}{}
+\runningfooter{ }{\thepage}{ }
+
+\printanswers
+
+
+\begin{document}
+  \colorbox{red}{\underline{$1.6.2b$}:}
+  \begin{solution}
+    Since there are $3$ vectors in the set and $\dim \RR^3 = 3$ it suffices to check for linear independence by Corollary 2:
+    \begin{align*}
+      A = \begin{pmatrix}
+        2 & 0 & 6 \\
+        -4 & 3 & 0 \\
+        1 & -1 & -1
+      \end{pmatrix}
+      \xrightarrow{2_1 \to \frac{1}{2}r_1}
+      &\begin{pmatrix}
+        1 & 0 & 3 \\
+        -4 & 3 & 0 \\
+        1 & -1 & 1 
+      \end{pmatrix} \\
+      \xrightarrow[r_3 \to r_3 - r_1]{r_2 \to r_2 + 4r_1}
+      &\begin{pmatrix}
+        1 & 0 & 3 \\
+        0 & 3 & 12 \\
+        0 & -1 & -4  
+      \end{pmatrix} \\
+      \xrightarrow{r_3 \to 3r_3 + r_2} 
+      &\begin{pmatrix}
+        1 & 0 & 3 \\
+        0 & 3 & 12 \\
+        0 & 0 & 0
+      \end{pmatrix}
+    \end{align*} 
+    thus $\rank A = 2 < 3$ and hence the set is linearly dependent and thus not a base for $\RR^3$.
+  \end{solution}
+
+  \colorbox{red}{\underline{$1.6.3b$}:}
+  \begin{solution}
+    Using the fact that $P_2(\RR) \cong \RR^3$ to write the vectors as column vectors in $\RR^3$ and then check for linear independence this way:
+    \begin{align*}
+      A = \begin{pmatrix}
+        1 & 3 & 0 \\
+        2 & 0 & 1 \\
+        1 & 1 & 1
+      \end{pmatrix}
+      \xrightarrow[r_3 \to r_3 - r_1]{r_2 \to r_2 - 2r_1}
+      &\begin{pmatrix}
+        1 & 3 & 0 \\
+        0 & -6 & 1 \\
+        0 & -2 & 1 
+      \end{pmatrix}
+      \xrightarrow{r_3 \to 3r_3 - r_2}
+      \begin{pmatrix}
+        1 & 3 & 0\\
+        0 & -6 & 1 \\
+        0 & 0 & 2
+      \end{pmatrix}
+    \end{align*}
+    thus $\rank A = 3$ and so the set is linearly independent and thus a basis by Corollary 2.
+  \end{solution}
+
+  \colorbox{red}{\underline{$1.6.9$}:}
+  \begin{solution}
+    \begin{align*}
+      \begin{amatrix}{4}
+        1 & 0 & 0 & 0 & a_1 \\
+        1 & 1 & 0 & 0 & a_2 \\
+        1 & 1 & 1 & 0 & a_3 \\
+        1 & 1 & 1 & 1 & a_4
+      \end{amatrix}
+      \xrightarrow[r_4 \to r_4 - r_1]{\substack{r_2 \to r_2 - r_1 \\ r_3 \to r_3 - r_1}}
+      &\begin{amatrix}{4}
+        1 & 0 & 0 & 0 & a_1 \\
+        0 & 1 & 0 & 0 & a_2 - a_1 \\
+        0 & 1 & 1 & 0 & a_3 - a_1 \\
+        0 & 1 & 1 & 1 & a_4 - a_1
+      \end{amatrix} \\
+      \xrightarrow[r_4 \to r_4 - r_2]{r_3 \to r_3 - r_2}
+      &\begin{amatrix}{4}
+        1 & 0 & 0 & 0 & a_1 \\
+        0 & 1 & 0 & 0 & a_2 - a_1 \\
+        0 & 0 & 1 & 0 & a_3 - a_2 \\
+        0 & 0 & 1 & 1 & a_4 - a_2
+      \end{amatrix} \\
+      \xrightarrow{r_4 \to r_4 - r_3}
+      &\begin{amatrix}{4}
+        1 & 0 & 0 & 0 & a_1 \\
+        0 & 1 & 0 & 0 & a_2 - a_1 \\
+        0 & 0 & 1 & 0 & a_3 - a_2 \\
+        0 & 0 & 0 & 1 & a_4 - a_3
+      \end{amatrix} \\
+    \end{align*}
+    Thus,  
+    \[
+      \begin{pmatrix}
+        a_1 \\ a_2 \\ a_3 \\ a_4
+      \end{pmatrix} 
+      = a_1\vec{u_1} + (a_2 - a_1)\vec{u_2} + (a_3 - a_2)\vec{u_3} + (a_4 - a_3)\vec{u_4}
+    \]
+  \end{solution}
+
+  \colorbox{red}{\underline{$2.1.2$}:}
+  \begin{solution}
+    $T$ is of the form $L_A$ for 
+    \[
+      A = \begin{pmatrix}
+        1 & -1 & 0 \\
+        0 & 0 & 2
+      \end{pmatrix}.
+    \]
+    To show $T$ is linear, first consider $\vec{u} = (a_1, a_2, a_3)$ and $\vec{v} = (b_1, b_2, b_3)$. Then
+    \begin{align*}
+      &T(\vec{u} + \vec{v}) = \begin{pmatrix}
+        (a_1 + b_1) - (a_2 + b_2) \\
+        2(a_3 + b_3)
+      \end{pmatrix}
+      = \begin{pmatrix}
+        a_1 - a_2 \\
+        2a_3
+      \end{pmatrix}
+      + \begin{pmatrix}
+        b_1 - b_2 \\
+        2b_3
+      \end{pmatrix}
+      = T(\vec{u}) + T(\vec{v}) \\
+      &T(c\vec{u}) = \begin{pmatrix}
+        c(a_1 - a_2) \\ 2ca_3
+      \end{pmatrix}
+      = c\begin{pmatrix}
+        a_1 - a_2 \\ 2a_3
+      \end{pmatrix} 
+      = cT(\vec{u})
+    \end{align*}
+    and so $T$ is linear. To find a basis for $N(T)$ we see 
+    \[
+      A = \begin{pmatrix}
+        1 & -1 & 0 \\
+        0 & 0 & 2
+      \end{pmatrix} 
+      \Rightarrow \begin{cases}
+        x_1 - x_2 = 0 \Rightarrow x_1 = x_2 \\
+        2x_3 = 0 \Rightarrow x_3 = 0
+      \end{cases}
+      \Rightarrow X = \begin{pmatrix}
+        x_1 \\ x_1 \\ 0
+      \end{pmatrix}
+      \Rightarrow \Span{\begin{pmatrix}
+        1 \\ 1 \\ 0
+      \end{pmatrix}} = N(T)
+    \]
+    and so $\braces{\begin{pmatrix} 1 \\ 1 \\ 0 \end{pmatrix}}$ is a basis for $N(T)$. For $R(T)$ we have that
+    \[
+      \braces{\begin{pmatrix}
+        1 \\ 0
+      \end{pmatrix}, \begin{pmatrix}
+        0 \\ 2
+      \end{pmatrix}}
+    \]
+    is a basis for $R(T)$ since they are the vectors corresponding to the pivot columns of RREF$(A)$. Thus 
+    \[
+      \nul{T} + \rank{T} = 1 + 2 = 3 = \dim \RR^3
+    \]
+    verifying the dimension theorem. Since $N(T) \neq \braces{0}$, $T$ is not one-to-one by Thm2.4. $T$ is onto since $\rank{A} = 2 = \dim \RR^2$.
+  \end{solution}
+
+  \colorbox{red}{\underline{$2.1.3$}:}
+  \begin{solution}
+    T is of the form $L_A$ for 
+    \[
+      A = \begin{pmatrix}
+        1 & 1 \\
+        0 & 0 \\
+        2 & -1 
+      \end{pmatrix}.
+    \]
+    To see that $T$ is linear consider $\vec{u}, \vec{v} \in \RR^2$ such that $\vec{u} = (a_1, a_2), \vec{v} = (b_1, b_2)$, Then, 
+    \begin{align*}
+      &T(\vec{u} + \vec{v}) = \begin{pmatrix}
+        a_1 + b_1 + a_2 + b_2 \\
+        0 \\
+        2(a_1 + b_1) - (a_2 + b_2)
+      \end{pmatrix}
+      = \begin{pmatrix}
+        a_1 + a_2 \\
+        0 \\
+        2a_1 - a_2
+      \end{pmatrix}
+      + \begin{pmatrix}
+        b_1 + b_2 \\
+        0 \\
+        2(b_1 - b_2)
+      \end{pmatrix}
+      = T(\vec{u}) + T(\vec{v}) \\
+      &T(c\vec{u}) = \begin{pmatrix}
+        c(a_1 + a_2) \\
+        0 \\
+        2ca_1 - ca_2
+      \end{pmatrix}
+      = c\begin{pmatrix}
+        a_1 + a_2 \\
+        0 \\
+        2a_1 - a_2
+      \end{pmatrix}
+      = cT(\vec{u})
+    \end{align*}
+    and so $T$ is linear. To find a basis for $N(T)$ we have 
+    \[
+      A = \begin{pmatrix}
+        1 & 1 \\
+        0 & 0 \\
+        2 & -1 
+      \end{pmatrix} 
+      \xrightarrow{r_2 \to r_2 - 2r_1}
+      \begin{pmatrix}
+        1 & 1 \\
+        0 & 0 \\
+        0 & -3 
+      \end{pmatrix}
+      \Rightarrow \begin{cases}
+        -3x_2 = 0 \Rightarrow x_2 = 0 \\
+        x_1 + x_2 = 0 \Rightarrow x_1 = -x_2
+      \end{cases}
+      \Rightarrow X = \begin{pmatrix}
+        0 \\ 0
+      \end{pmatrix}
+    \]
+    and hence $N(T) = \braces{0}$. For $R(T)$ we know from above that the first and second columns are pivot columns and so 
+    \[
+      \braces{
+        \begin{pmatrix}
+          1 \\ 0 \\ 2
+        \end{pmatrix},
+        \begin{pmatrix}
+          1 \\ 0 \\ -1
+        \end{pmatrix}
+      }
+    \]
+    is a basis for $R(T)$. Since $N(T) = \braces{0}$, $T$ is one-to-one and because $\rank{A} = 2 < 3 = \dim \RR^3$ T is not onto.
+  \end{solution}
+
+  \colorbox{red}{\underline{$2.1.9$}:}
+  \begin{solution}
+    \begin{parts}
+      \part $T$ is not linear since for $\vec{u} = (a_1, a_2)$ and $\vec{v} = (b_1, b_2)$ we have 
+      \[
+        T(\vec{u} + \vec{v}) = \begin{pmatrix}
+          1 \\ a_2 + b_2
+        \end{pmatrix}
+        \neq \begin{pmatrix}
+          2 \\ a_2 + b_2
+        \end{pmatrix}
+        = T(\vec{u}) + T(\vec{v})
+      \]
+
+      \part $T$ is not linear since for $\vec{u} = (a_1, a_2)$ and $c \in \RR$ we have 
+      \[
+        T(c\vec{u}) = \begin{pmatrix}
+          ca_1 \\ (ca_2)^2
+        \end{pmatrix}
+        \neq 
+        \begin{pmatrix}
+          ca_1 \\
+          c(a_1)^2
+        \end{pmatrix}
+        = cT(\vec{u})
+      \]
+    \end{parts}
+  \end{solution}
+
+  \colorbox{red}{\underline{$2.1.15$}:}
+  \begin{solution}
+    \begin{proof}
+      We first show that $T$ is linear. Consider $f, g \in P(\RR)$ and $c \in \RR$. Then, 
+      \begin{align*}
+        &T(f(x) + g(x)) = \int_{0}^{x} f(t)\, \mathrm{d}t + \int_{0}^{x} g(t)\, \mathrm{d}t = \int_{0}^{x} f(t) + g(t)\, \mathrm{d}t = T(f(x) + g(x)) \\
+        &T(cf(x)) = \int_{0}^{x} cf(t)\,\mathrm{d}t = c\int{0}^{x} f(t)\,\mathrm{d}t = cT(f(x))
+      \end{align*}
+      and hence $T$ is linear. It is clear that $T$ is not onto as any constant polynomial ($f(x) = n$ for $n \in \RR$) is not in $R(T)$ since there is nothing that integrates to just a constant. We show that $T$ is one-to-one by assuming that $T(f(x)) = T(g(x))$ and showing $f = g$: 
+      \begin{align*}
+        T(f(x)) = T(g(x)) &\Rightarrow \int_{0}^{x} f(t)\, \mathrm{d}t = \int_{0}^{x} g(t)\,\mathrm{d}t \\
+        &\Rightarrow \int_{0}^{x} f(t) - g(t)\,\mathrm{d}t = 0 \\
+        &\Rightarrow \frac{\mathrm{d}}{\mathrm{d}x}\left[\int_{0}^{x}f(t) - g(t)\,\mathrm{d}t \right] = 0 \\
+        &\Rightarrow f(x) - g(x) = 0 \\
+        &\Rightarrow f(x) = g(x) \quad \forall\, x \in \RR
+      \end{align*}
+      as was to be shown. 
+    \end{proof}
+  \end{solution}
+
+  \newpage
+
+  \colorbox{red}{\underline{$2.2.2$}:}
+  \begin{solution}
+    \begin{parts}
+      \part We have that 
+      \[
+        T(e_1) = \begin{pmatrix}
+          2 \\ 3 \\ 1
+        \end{pmatrix}
+        \quad\text{and}\quad
+        T(e_2) = \begin{pmatrix}
+          -1 \\ 4 \\ 0
+        \end{pmatrix}
+      \]
+      so 
+      \[
+        \left[T\right]_{\beta}^{\gamma} = \begin{pmatrix}
+          2 & 1 \\
+          3 & 4 \\
+          1 & 0 
+        \end{pmatrix} = A
+      \]
+      and so the matrix representation fo $T$ in the standard ordered bases for $\RR^{2}$ and $\RR^{3}$ is the same as the matrix presentation of $T$ in the form $T=L_A$.
+
+      \part We have that 
+      \[
+        T(e_1) = \begin{pmatrix}
+          2 \\ 1
+        \end{pmatrix}
+        \quad\text{and}\quad
+        T(e_2) = \begin{pmatrix}
+          3 \\ 0
+        \end{pmatrix}
+        \quad\text{and}\quad
+        T(e_3) = \begin{pmatrix}
+          -1 \\ 1
+        \end{pmatrix}
+      \]
+      so 
+      \[
+        \left[T\right]_{\beta}^{\gamma} = \begin{pmatrix}
+          2 & 3 & -1 \\
+          1 & 0 & 1
+        \end{pmatrix} = A
+      \]
+      and so the matrix representation fo $T$ in the standard ordered bases for $\RR^{2}$ and $\RR^{3}$ is the same as the matrix presentation of $T$ in the form $T=L_A$.
+
+      \part We have that 
+      \[
+        T(e_1) = 2
+        \quad\text{and}\quad
+        T(e_2) = 1
+        \quad\text{and}\quad
+        T(e_3) = -3
+      \]
+      so 
+      \[
+        \left[T\right]_{\beta}^{\gamma} = \begin{pmatrix}
+          2 & 1 & -3
+        \end{pmatrix} = A
+      \]
+      and so the matrix representation fo $T$ in the standard ordered bases for $\RR$ and $\RR^{3}$ is the same as the matrix presentation of $T$ in the form $T=L_A$.
+    \end{parts}
+  \end{solution}
+
+
+  \colorbox{red}{\underline{$2.2.4$}:}
+  \begin{solution}
+    We have that 
+    \[
+      T(e_1) = 1 
+      \quad\text{and}\quad
+      T(e_2) = 1+x^2
+      \quad\text{and}\quad 
+      T(e_3) = 0
+      \quad\text{and}\quad 
+      T(e_4) = x
+    \]
+    so 
+    \[
+      \left[T\right]_{\beta}^{\gamma} = \begin{pmatrix}
+        1 & 1 & 0 & 0 \\
+        0 & 0 & 0 & 1 \\
+        0 & 1 & 0 & 0 
+      \end{pmatrix}
+    \]
+  \end{solution}
+
+  \colorbox{red}{\underline{$2.2.5d$}:}
+  \begin{solution}
+    We have that 
+    \[
+      T(e_1) = 1 
+      \quad\text{and}\quad 
+      T(e_2) = 2 
+      \quad\text{and}\quad
+      T(e_3) = 4  
+    \]
+    so 
+    \(
+      \left[T\right]_{\beta}^{\gamma} = \begin{pmatrix}
+        1 & 2 & 4
+      \end{pmatrix}
+    \)
+  \end{solution}
+\end{document}
