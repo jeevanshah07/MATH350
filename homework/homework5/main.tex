@@ -1,0 +1,57 @@
+\documentclass{exam}
+\usepackage{../../shah350}
+
+\hypersetup{colorlinks=true, linktoc=section, linkcolor=blue}
+
+\pagestyle{headandfoot}
+\firstpageheadrule
+\runningheadrule
+\firstpageheader{Prof. Lepowsky \\ Linear Algebra}{Homework \#5}{\href{https://github.com/jeevanshah07/MATH350/blob/main/homework/homework5/main.tex}{\underline{Source}} \\ Jeevan Shah}
+\runningheader{Linear Algebra \\ Homework \#5}{}{Shah}
+\firstpagefooter{}{\thepage}{}
+\runningfooter{ }{\thepage}{ }
+
+\printanswers
+
+
+\begin{document}
+  \colorbox{red}{\underline{$1.3.23$}:}
+  \begin{solution}
+      \begin{parts}
+        \part 
+        \begin{proof} 
+          Let $W_1, W_2$ be subspaces of a vector space $V$. We must first show that $W_1 + W_2$ is a subspace. This is obvious as $0 \in W_1$ and $0 \in W_2$ so $0 \in W_1 + W_2$ by definition. As well, for $x = x_1 + y_1$ and $y = x_2 + y_2$ in $W_1 + W_2$ (with $x_1, x_2 \in W_1$ and $y_1, y_2 \in W_2$) and $c \in \FF$ we have $cx = cx_1 + cy_1 \in W_1 + W_2$ and $x + y = (x_1 + x_2) + (y_1 + y_2) \in W_1 + W_2$ because $W_1$ and $W_2$ are closed under vector addition and scalar multiplication. Hence, by Thm.~1.3 $W_1 + W_2$ is a subspace. The fact that $W_1 \subseteq W_1 + W_2$ and $W_2 \subseteq W_1 + W_2$ follows clearly from the fact that $0 \in W_1 + W_2$ so for $x \in W_1, x = x + 0 \in W_1 + W_2$ and for $y \in W_2, y = 0 + y \in W_1 + W_2$.
+        \end{proof}
+
+        \part \begin{proof}
+          Consider vector space $V$ with subspaces $W_1, W_2, W_3$ such that $W_1 \subseteq W_3$ and $W_2 \subseteq W_3$. It follows that $W_1 + W_2 \subseteq W_3$ since for all $x, y \in W_3$ we know that $x + y \in W_3$ as well, so by restricting $x \in W_1$ and $y \in W_2$ it is clear that $W_1 + W_2 \subseteq W_3$.
+        \end{proof}
+      \end{parts}
+  \end{solution}
+
+  \colorbox{red}{\underline{$1.3.24$}:}
+  \begin{solution}
+    \begin{proof}
+      Clearly $W_1 \cap W_2 = \braces{\vec{0}}$ since if $x = (x_1, \dots, x_n) \in W_1 \cap W_2$ then $x_n = 0$ (as $x \in W_1$) and $x_1 = \cdots = x_{n-1} = 0$ (as $x \in W_2$), so $x = \vec{0}$. It is also clear that $W_1 + W_2 = \FF^n$ since any $x = (c_1, c_2, \dots, c_n) \in \FF^n$ can be represented by 
+      \[
+        (c_1, c_2, \dots, c_{n-1}, 0) + (0, \dots, 0, c_n) \in W_1 + W_2
+      \]
+      so $\FF^n \subseteq W_1 + W_2$ and $W_1 + W_2 \subseteq \FF^n$ by definition of subspaces. Thus $W_1 \oplus W_2 = \FF^n$.
+    \end{proof}
+  \end{solution}
+
+  \colorbox{red}{\underline{$1.3.25$}:}
+  \begin{solution}
+    \begin{proof}
+      It is clear that $W_1 \cap W_2 = \braces{\vec{0}}$ since if $f(x) = a_nx^n + \cdots + a_1x + a_0 \in W_1 \cap W_2$ then $a_i = 0$ for all even $i$ (as $f \in W_1$) and $a_i = 0$ for all odd $i$ (as $f \in W_2$), so every coefficient of $f$ is $0$ and $f$ is the zero polynomial. As well, clearly $W_1 + W_2 = P(\FF)$ as any $h(x) = c_k x^k + c_{k-1}x^{k-1} + \cdots + c_1 x + c_0$ can be represented as a sum of some $f(x) \in W_1$ and $g(x) \in W_2$ where $f$ is the polynomial formed by summing all the terms of odd degree of $h$ and $g$ is the polynomial formed by summing all the terms of even degree of $h$. So, $P(\FF) \subseteq W_1 + W_2$. Thus $W_1 \oplus W_2 = P(\FF)$ (since $W_1 + W_2 \subseteq P(\FF)$ by definition).
+    \end{proof}
+  \end{solution}
+
+  \colorbox{red}{\underline{$1.3.30$}:}
+  \begin{solution}
+    \begin{proof}
+      $(\Leftarrow)$ Assume that each vector in $V$ can be uniquely written as $x_1 + x_2$ with $x_1 \in W_1$ and $x_2 \in W_2$. Since this representation is unique and $0 \in W_1$ and $0 \in W_2$ it follows that $W_1 \cap W_2 = \braces{\vec{0}}$ since for any $z \in W_1 \cap W_2$ we have $z = z + 0 = 0 + z$ (once with $z \in W_1, 0 \in W_2$ and once with $0 \in W_1, z \in W_2$), so uniqueness forces $z = 0$. It follows from our assumptions that $W_1 + W_2 = V$ since every vector $x$ has a unique representation of the specified form. So, $W_1 \oplus W_2 = V$ \\
+      $(\Rightarrow)$ Conversely, assume that $V$ is the direct sum of $W_1$ and $W_2$. Existence is clear as $W_1 + W_2 = V$ by definition. Uniqueness follows as if $x_1 + x_2 = y_1 + y_2$ then $x_1 - y_1 = y_2 - x_2 \in W_1 \cap W_2 = \braces{\vec{0}}$ forcing $x_1 = y_1$ and $x_2 = y_2$.
+    \end{proof}
+  \end{solution}
+\end{document}

@@ -1,0 +1,257 @@
+\documentclass{exam}
+\usepackage{../shah350}
+
+\hypersetup{colorlinks=true, linktoc=section, linkcolor=blue}
+
+\pagestyle{headandfoot}
+\firstpageheadrule
+\runningheadrule
+\firstpageheader{Prof. Lepowsky \\ Linear Algebra}{Midterm \#1}{Jeevan Shah}
+\runningheader{Linear Algebra \\ Midterm \#1}{}{Shah}
+\firstpagefooter{}{\thepage}{}
+\runningfooter{ }{\thepage}{ }
+
+\begin{document}
+\section*{Chapter 1}
+    \begin{defbox}{Vector Space}
+        A vector space $V$ over a field $\FF$ is a set with two binary operations: scalar multiplication and vector addition. For vectors $\vec{v}, \vec{u},$ and $\vec{w}$, and any scalars $a, b \in \FF$:
+        \begin{enumerate}
+            \item $\vec{u} + \vec{v} = \vec{v} + \vec{u}$
+            \item $(\vec{u} + \vec{v}) + \vec{w} = \vec{u} + (\vec{v} + \vec{w})$. Repeated applications of this axiom allow us to write the sum of $n$ vectors without parenthesis needed.
+            \item There exists $\vec{0} \in V$ such that $\vec{v} + \vec{0} = \vec{v}$. The vector $\vec{0}$ is unique in $V$
+            \item For all $\vec{v} \in V$ there exists $\vec{v}' \in V$ such that $\vec{v} + \vec{v}' = \vec{0}$. The vector $\vec{v}'$ is unique and may be denoted $-\vec{v}$.
+            \item For $1 \in \FF$, $1\vec{u} = \vec{u}$  
+            \item $(ab)\vec{u} = a(b\vec{u})$
+            \item $a(\vec{u} + \vec{v}) = a\vec{u} + a\vec{v}$
+            \item $(a + b)\vec{u} = a\vec{u} + b\vec{u}$
+        \end{enumerate}
+    \end{defbox}
+
+    \begin{example}{Examples of Vector Spaces}{}
+        Fundamental vector spaces include: 
+        \begin{enumerate}
+            \item $\FF^{n}$: the set of $n$-tuples in $\FF$ with coordinate wise vector addtiion and scalar multiplication (think $\RR, \RR^2, \RR^n$ and $\CC^n$)
+            \item $P(\FF)$: the set of \emph{all} polynomials with coefficents in $\FF$
+            \item $P_n(\FF)$: the set of all \underline{degree $n$} polynomials with coefficents in $\FF$
+            \item $\MM_{n \times m}(\FF)$: the set of all $m \times n$ matricies with entries in $\FF$ with vector addition and scalar multiplication defined as usual
+            \item $\mathcal{F}(S, \FF)$: the set of all functions $f: S \to \FF$ for $S \neq \varnothing$
+        \end{enumerate}
+    \end{example}
+
+    \begin{defbox}{Subspaces}
+        Let $V$ be a vector space over $\FF$. Then $W \subseteq V$ is a subspace of $V$ if, and only if, $W$ is a vector space over $\FF$ with scalar multiplication and vector addition defined as in $V$. Noteably, $V$ and $\braces{0}$ are subspaces of $V$.
+    \end{defbox}
+
+    Given $W \subseteq V$ to determind if $W$ is a subspace of $V$ it suffices to check that 
+    \begin{enumerate}
+        \item $0 \in W$
+        \item $\vec{u} + \vec{v} \in W$ for $\vec{u}, \vec{v} \in W$
+        \item $a\vec{u} \in W$ for $a \in \FF$
+    \end{enumerate}
+
+    \begin{impbox}{Elementary Row Operations \& RREF}
+        Let $A$ be an $m \times n$ matrix. Given any matrix $A$ we may apply the following elementary row operations:
+        \begin{itemize}
+            \item $r_i \to r_i - nr_j$ for $n \in \FF$
+            \item $r_i \leftrightarrow r_j$
+            \item $r_i \to nr_i$ for $n \in \FF$
+        \end{itemize}
+        A matrix $A$ is said to be in RREF (reduced row echelon form) if all its pivots (first non-zero entry in a row) are $1$. We may apply elementary row operations to $A$ to transform it into $A_{RREF}$. In a system of equations we use elementary row operations to go from $(A \mid b) \to (R \mid c)$ which preserves solutions to the system.
+    \end{impbox}
+
+    \begin{defbox}{Linear Combination \& Span}
+        If $V$ is a vector space and $S \subseteq V \neq \varnothing$ then $\vec{v} \in V$ is a linear combination of vectors in $S$ if 
+        \[
+            \vec{v} = \sum_{i=0}^{n} a_i\vec{u}_i
+        \]
+        where $a_i \in \FF$ and $\vec{u}_i \in S$ for all $i = 1, \dots, n$ ($S$ must be finite). The scalars $a_1, \dots, a_n$ are called the coefficents of the linear combination. The span of $S$ is the set of all linear combinations of $S$. Specifically we say that $\Span{\varnothing} = \braces{0}$. If $\Span{S} = V$ for a vector space $V$, we say that $S$ generates $V$.
+    \end{defbox}
+
+    If $S$ is a set, we can determine if a vector $\vec{v}$ is in its span by row reducing $(A \mid \vec{v})$ where $A$ is the matrix formed by writing all the vectors in $S$ as columns vectors. If the system is consistent (i.e. no pivots in the last column) then $\vec{v} \in \Span{S}$ and otherwise $\vec{v} \not\in \Span{S}$. 
+
+    If $S$ is a set, we can determine if $\Span{S} = \FF^{n}$ by row reducing the matrix $A$ that is formed by writing the vectors of $S$ as column vectors and checking if $\rank A = n$ (recall that the rank of a matrix is equal to the number of pivots when row reduced).
+
+    \begin{defbox}{Linear Independence/Dependence}
+        Consider $S \subseteq V$ for some vector space $V$. The set $S$ is said to be linearly dependent if there exist a finite amount of vectors $\vec{u}_1, \dots, \vec{u}_n \in S$ and scalars $a_1, \dots, a_n \in \FF$ not all zero such that 
+        \[
+            \sum_{i=0}^{n} a_i\vec{u}_i = 0. 
+        \]
+        When $a_1 = a_2 = \cdots = a_n = 0$, we call it the trivial representation of $0$. If the trivial representation of $0$ is the only representation of $0$ then $S$ is said to be linearly independent.
+    \end{defbox}
+
+    Given a set of vectors $S$ we may check if it linearly independent or dependent by looking at the augmented matrix $(A \mid 0)$ (which we can treat as simply just $A$), where $A$ is the matrix formed by writing the vectors in $S$ as column vectors. If there are infinitely many solutions (i.e. if there is at least one free variable) then $S$ is linearly dependent. If there is only a single solution then $S$ is linearly dependent.
+
+    \begin{defbox}{Basis}
+        A basis $\beta$ for a vector space $V$ is a linearly independent subset of $V$ that generates $V$.
+    \end{defbox}
+
+    \newpage 
+
+    \begin{thm}{}
+        Let $V$ be a vector space and $u_1, \dots, u_n$ be distinct vectors in $V$. Then $\beta = \braces{u_1, \dots, u_n}$ is a basis for $V$ if, and only if, each $v \in V$ can uniquely be expressed as a linear combination of vectors of $\beta$, that is, can be expressed in the form 
+        \[
+            v = a_1 u_1 + \dots a_n u_n
+        \]
+        for unique scalars $a_1, \dots, a_n \in \FF$.
+        \begin{proof}
+            $(\Rightarrow)$ Let $\beta$ be a basis for $V$. It follows that for any $v \in V$, $v \in \Span{\beta}$ since $\Span{\beta} = V$. We now show that the representation of $v$ is unique. Consider two representations of $v$: 
+            \begin{align*}
+                v &= a_1 u_1 + a_2 u_2 + \cdots + a_n u_n \\
+                v &= b_1 u_1 + b_2 u_2 + \cdots + b_n u_n
+            \end{align*}
+            however, if we subtract the two then we see that 
+            \[
+                0 = u_1(a_1 - b_1) + \cdots + u_n(a_n - b_n)
+            \]
+            since $u_i \neq 0$ it follows that $a_1 - b_1 = 0 \Rightarrow a_1 = b_1$ and thus the representation of $v$ is unique.
+
+            $(\Leftarrow)$ Conversely, assume that each $v \in V$ can be uniquely expressed as a linear combination of vectors in $\beta$. It clearly follows that $\beta$ is a basis for $V$ since, $\Span{\beta} = V$ because every vector in $V$ can be represented as a linear combination of vectors in $\beta$ by assumption. As well, since representations are unique it must be true that $\beta$ is linearly independent because there is a unique representation of $0 \in V$.
+        \end{proof}
+    \end{thm}
+
+    \begin{defbox}{Dimension}
+        A vector space $V$ is said to be finite-dimensional if it has at least one basis consiting of a finite number of vectors, otherwise $V$ is called infinite-dimensional. The dimension of a vector space is denoted $\dim V$. Specifically, we say that $\dim \braces{0} = 0$ and $\dim \FF^n = n$.
+    \end{defbox}
+
+    Following from the Replacement Theorem (Thm1.10 in the textbook) we have that for a vector space $V$ that has a finite basis, it follows that \emph{all} bases for $V$ are also finite and contain the same number of vectors. As well, if $\dim V = n$ then 
+    \begin{enumerate}
+        \item Any finite generating set for $V$ contains at least $n$ vectors, and a generating set of $V$ that contains exactly $n$ vectors is a basis for $V$ 
+        \item Any linearly independent subset of $V$ that contains exactly $n$ vectors is a basis for $V$ 
+        \item Every linearly independent subset of $V$ can be extended to a basis for $V$, that is, if $L$ is a linearly independent subset of $V$, then there exists a basis $\beta$ such that $L \subseteq \beta$.
+    \end{enumerate}
+
+    \begin{example}{Standard Basis}{}
+        \begin{itemize}
+            \item For $\RR^{n}$ we denote the standard basis to be 
+            \[
+                e_1 = \begin{pmatrix}
+                    1 \\ 0 \\ \vdots \\ 0
+                \end{pmatrix}, e_2 = \begin{pmatrix}
+                    0 \\ 1 \\ \vdots \\ 0
+                \end{pmatrix}, \dots, e_n = \begin{pmatrix}
+                    0 \\ 0 \\ \vdots \\ 1
+                \end{pmatrix}
+            \]
+            so that for $e_i$ the $i$-th row is $1$ and every other row is $0$. 
+
+            \item For $P_n(\FF)$ we denote the standard basis to be 
+            \[
+                e_1 = \begin{pmatrix}
+                    1 \\ 0 \\ \vdots \\ 0
+                \end{pmatrix},
+                e_2 = \begin{pmatrix}
+                    0 \\ x \\ \vdots \\ 0
+                \end{pmatrix},
+                \dots e_{n+1} = \begin{pmatrix}
+                    0 \\ 0 \\ \vdots \\ x^{n}
+                \end{pmatrix}
+            \]
+            so that for $e_i$ the $i$-th row is $x^{i-1}$ and every other row is $0$.
+        \end{itemize}
+    \end{example}
+
+\section*{Chapter 2}
+    \begin{defbox}{Linear Transformations}
+        Let $V$ and $W$ be vector spaces over $\FF$ and define $T: V \to W$. $T$ is a linear transformation if for all $x, y \in V$ and $c \in \FF$ we have
+        \begin{enumerate}
+            \item $T(x + y) = T(x) + T(y)$
+            \item $T(cx) = cT(x)$
+        \end{enumerate}
+    \end{defbox}
+
+    If $T$ is linear it follows that $T(0) = 0$ and that $T(x - y) = T(x) - T(y)$.
+
+    \begin{defbox}{Null Space \& Range}
+        Let $V$ and $W$ be vector spaces and $T: V \to W$ be a linear transformation. The null space of $T$ is defined to be the set of all vectors $x$ such that $T(x) = 0$. Symbolically
+        \[
+            N(T) = \braces{x \mid T(x) = 0}.
+        \]
+        The nullity of $T$ is the dimension of $N(T)$.
+        The range of $T$ is the set of all images of vectors $x$:
+        \[
+            R(T) = \braces{T(x) \mid x \in V}.
+        \]
+        The rank of $G$ is the dimension of $R(T)$.
+    \end{defbox}
+
+    \begin{thm}{Dimension Theorem}{}
+        Let $V$ and $W$ be vector spaces and $T: V \to W$ be linear. If $V$ is finite dimensional then 
+        \[
+            \nul{T} + \rank{T} = \dim{V} 
+        \]
+    \end{thm}
+
+    \begin{thm}{}{}
+        Let $V$ and $W$ be vector spaces and $T: V \to W$ be linear. Then $T$ is one-to-one if, and only if, $N(T) = \braces{0}$
+        \begin{proof}
+            $(\Rightarrow)$ Assume $T$ is one-to-one. It follows by definition of injectivity that $N(T) = \braces{0}$ since if $T(x) = T(y) = 0$ then $x = y = 0$ since $T(0) = 0$ if $T$ is linear. \\
+            $(\Leftarrow)$ Conversely, assume that $N(T) = \braces{0}$. We must show that $T(x) = T(y)$ implies that $x = y$. However, if $T(x) = T(y)$ then 
+            \[
+                0 = T(x) - T(y) = T(x - y) 
+            \]
+            thus $x - y \in N(T) = \braces{0}$ so $x - y = 0 \Rightarrow x = y$ and so $T$ is injective.
+        \end{proof}
+    \end{thm}
+
+    \begin{thm}{}{}
+        Let $V$ and $W$ be finite dimensional vector spaces and $T: V \to W$ be linear. Then the following are equivalent: 
+        \begin{enumerate}
+            \item $T$ is one-to-one 
+            \item $T$ is onto 
+            \item $\rank T = \dim V$
+        \end{enumerate}
+    \end{thm}
+
+
+    \begin{thm}{}{}
+        Let $V$ and $W$ be vector spaces over $\FF$ and suppose that ${v_1, v_2, \dots, v_n}$ is a basis for $V$. For $w_1, w_2, \dots, w_n$ in $W$ there exists exactly one linear transformation $T: V \to W$ such that $T(v_i) = w_i$
+        \begin{proof}
+            Let $x \in V$ so that 
+            \[
+                x = \sum_{i=1}^{n} a_i v_i
+            \]
+            for unique $a_i \in \FF$. Then define $T: V \to W$ by 
+            \[
+                T(x) = \sum_{i=1}^{n} a_i w_i
+            \]
+            so that clearly $T(v_i) = w_i$. To show $T$ is linear consider $x, y \in V$ and $c \in \FF$. Then 
+            \[
+                T(x + y) = \sum_{i = 1}^{n}(a_i + b_i)w_i = \sum_{i=1}^{n}a_i w_i + \sum_{i=1}^n b_i w_i = T(x) + T(y)
+            \]
+            where 
+            \[
+                x = \sum_{i=1}^{n}a_i v_i \quad\text{and}\quad y = \sum_{i=1}^{n}b_i v_i
+            \]
+            for unique scalars $a_i, b_i \in \FF$ for $i = 1, 2, \dots, n$. Also, 
+            \[
+                T(cx) = \sum_{i=1}^{n} a_i c w_i = c \sum_{i=1}^n a_i w_i = cT(x).
+            \]
+            Now, to show uniqueness consider some $U: V \to W$ such that $U(v_i) = w_i$ as well. So 
+            \[
+                U(x) = \sum_{i=1}^n a_i U(v_i) = \sum_{i=1}^n a_i w_i = T(x)
+            \]
+            and hence $U = T$ so $T$ is unique.
+        \end{proof}
+    \end{thm}
+
+    \begin{defbox}{Ordered Basis}
+        Let $V$ be a finite dimensional vector space with basis $\beta$. Then, $\beta$ is an ordered basis if it is given a specific order
+    \end{defbox}
+
+    \begin{defbox}{Coordinate Vectors}
+        Let $\beta = \braces{v_1, \dots, v_n}$ be an ordered basis for a finite dimensional vector field $V$. If 
+        \[
+            x = \sum_{i=1}^n a_i v_i
+        \]
+        for unique scalars $a_i \in \FF$ for $i = 1, \dots, n$ then the coordinate vector of $x$ relative to $\beta$ is 
+        \[
+            [x]_\beta = \begin{pmatrix}
+                a_1 \\ a_2 \\ \vdots \\ a_n
+            \end{pmatrix}
+        \]
+    \end{defbox}
+
+    \begin{defbox}{Matrix Representation of $T$}{}
+        Let $\beta$ and $\gamma$ be ordered bases for vector spaces $V$ and $W$ respectively, and consider $T: V \to W$. Then, the $m \times n$ matrix $A$ comprised of the column vectors $[T(v_i)]_\gamma$ is called the matrix representation of $T$ in the ordered bases $\beta$ and $\gamma$. We say $A = [T]_\beta^\gamma$ (or $A = [T]_\beta$ if $V = W$).
+    \end{defbox}
+\end{document}
