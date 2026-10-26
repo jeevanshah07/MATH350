@@ -1,0 +1,480 @@
+\documentclass{exam}
+\usepackage{../../shah350}
+
+\hypersetup{colorlinks=true, linktoc=section, linkcolor=blue}
+
+\pagestyle{headandfoot}
+\firstpageheadrule
+\runningheadrule
+\firstpageheader{Prof. Lepowsky \\ Linear Algebra}{Homework \#7}{\href{https://github.com/jeevanshah07/MATH350/blob/main/homework/homework7/main.tex}{\underline{Source}} \\ Jeevan Shah}
+\runningheader{Linear Algebra \\ Homework \#7}{}{Shah}
+\firstpagefooter{}{\thepage}{}
+\runningfooter{ }{\thepage}{ }
+
+\printanswers
+
+% 4.1.9, 4.1.11a. 4.1.11*
+% 4.2.7, 4.2.8, 4.2.14, 4.2.18, 4.2.23
+% 4.4.2c, 4.4.3c, 4.4.3e
+
+\begin{document}
+  \colorbox{red}{\underline{$4.1.9$}:}
+  \begin{solution}
+    \begin{proof}
+      Let $A, B \in \MM_{2\times 2}(\FF)$ with 
+      \[
+        A = \begin{pmatrix}
+          a & b \\ c & d 
+        \end{pmatrix}
+        \mand B = \begin{pmatrix}
+          e & f \\ g & h
+        \end{pmatrix}
+      \]
+      so 
+      \[
+        AB = \begin{pmatrix}
+          ae + bg & af + bh \\
+          ce + dg & cf + dh
+        \end{pmatrix}.
+      \]
+      Then, 
+      \begin{align*}
+        \det(AB) &= (ae + bg)(cf + dh) - (af + bh)(ce + dg) \\
+        &= acef + adeh + bcfg + bdgh - (acef + adfg + bceh + bdgh) \\
+        &= adeh - adfg + bcfg - bceh \\
+        &= ad(eh - fg) - bc(eh - fg) \\
+        &= (ad - bc)(eh - fg) \\
+        &= \det(A) \cdot \det(B)
+      \end{align*}
+      which was to be shown.
+    \end{proof}
+  \end{solution}
+
+  \colorbox{red}{\underline{$4.1.11a$}:}
+  \begin{solution}
+    \begin{proof}
+      Consider some $E \in \MM_{2 \times 2}(\FF)$ an elementary matrix given by applying at most one elementary row operation to $I$, the identity matrix. 
+      \newline\underline{Case 1 (no operation):} If no operations are applied then clearly $E = I$ so 
+      \[
+        \delta(E) = \delta(I) = 1 = \det(I) = \det(E).
+      \]
+      \newline\underline{Case 2 ($r_1 \leftrightarrow r_2$):} If the only operation applied is switching rows then 
+      \[
+        I = \begin{pmatrix}
+          1 & 0 \\ 0 & 1
+        \end{pmatrix} 
+        \xrightarrow{r_1 \leftrightarrow r_2} 
+        \begin{pmatrix}
+          0 & 1 \\
+          1 & 0 
+        \end{pmatrix} = E
+      \]
+      so $\det(E) = -1$. Now, using the facts that $\delta$ is a linear function of each row and that $\delta(A) = 0$ if any two rows of $A$ are identical, we may consider 
+      \begin{align*}
+        0 = \delta\Biggl(\begin{pmatrix}
+          1 & 1 \\ 1 & 1
+        \end{pmatrix}\Biggr) 
+        &= \delta\Biggl(\begin{pmatrix}
+          1 & 0 \\
+          1 & 1 
+         \end{pmatrix}\Biggr)
+         + \delta\Biggl(\begin{pmatrix}
+          0 & 1 \\
+          1 & 1 
+         \end{pmatrix}\Biggr) \\
+        &= \delta\Biggl(\begin{pmatrix}
+          1 & 0 \\
+          0 & 1 
+         \end{pmatrix}\Biggr)
+         + \delta\Biggl(\begin{pmatrix}
+          1 & 0 \\
+          1 & 0 
+         \end{pmatrix}\Biggr)
+         + \delta\Biggl(\begin{pmatrix}
+          0 & 1 \\
+          1 & 0 
+         \end{pmatrix}\Biggr)
+         + \delta\Biggl(\begin{pmatrix}
+          0 & 1 \\
+          0 & 1 
+         \end{pmatrix}\Biggr) \\
+        &= \delta(I) + 0 + \delta(E) + 0 = 0 \\
+        &\Rightarrow\, \delta(E) = -1 = \det(E)
+      \end{align*}
+      \newline\underline{Case 3 ($r_i \to k r_i$):} In the case that a row is scaled, without loss of generality (since the case in which $i = 2$ is identical), we take $i = 1$ so $I \to E$ by $r_1 \to k r_1$ for $k \in \FF$: 
+      \[
+        I = \begin{pmatrix}
+          1 & 0 \\
+          0 & 1
+        \end{pmatrix} 
+        \xrightarrow{r_1 \to k r_1} 
+        \begin{pmatrix}
+          k & 0 \\
+          0 & 1
+        \end{pmatrix} = E
+      \]
+      so $\det(E) = k$. Then, 
+      \[
+        \delta\Biggl(\begin{pmatrix} 
+          k & 0 \\ 0 & 1 
+        \end{pmatrix}\Biggr)
+        = \delta\Biggl(\begin{pmatrix} 
+          k\cdot 1 & k\cdot 0 \\ 0 & 1 
+        \end{pmatrix}\Biggr)
+        = k\,\delta\Biggl(\begin{pmatrix} 
+          1 & 0 \\ 0 & 1 
+        \end{pmatrix}\Biggr)
+        = k\,\delta(I) = k = \det(E).
+      \]
+      \newline\underline{Case 4 ($r_i \to r_i + k r_j$):} As before, without loss of generality we may take $i = 1$ and $j = 2$, as the argument is identical should they be swapped, and $k \in \FF$ so $I \to E$ by $r_1 \to r_1 + k r_2$: 
+      \[
+        I = \begin{pmatrix}
+          1 & 0 \\
+          0 & 1
+        \end{pmatrix}
+        \xrightarrow{r_1 \to r_1 + k r_2}
+        \begin{pmatrix}
+          1 & k \\
+          0 & 1
+        \end{pmatrix} = E
+      \]
+      so $\det(E) = 1$. But 
+      \[
+        \delta\Biggl(\begin{pmatrix}
+          1 & k \\
+          0 & 1
+        \end{pmatrix}\Biggr) 
+        = \delta\Biggl(\begin{pmatrix}
+          1 & 0 \\
+          0 & 1
+        \end{pmatrix}\Biggr) 
+        + \delta\Biggl(\begin{pmatrix}
+          0 & k \\
+          0 & 1
+        \end{pmatrix}\Biggr)
+        = \delta(I) + k\delta\Biggl(\begin{pmatrix}
+          0 & 1 \\
+          0 & 1
+        \end{pmatrix}\Biggr)
+        = 1 + 0 = 1 = \det(E).
+      \]
+      Hence, $\det(E) = \delta(E)$ for all elementary $2 \times 2$ matrices.
+    \end{proof}
+  \end{solution}
+
+  \colorbox{red}{\underline{$4.1.11*$}:}
+  \begin{solution}
+    \begin{proof}
+      Let $A \in \MM_{2 \times 2}(\FF)$ so 
+      \[
+        A = \begin{pmatrix}
+          a & b \\ c & d
+        \end{pmatrix}.
+      \]
+      So, 
+      \begin{align*}
+        \delta\Biggl(\begin{pmatrix}
+          a & b \\
+          c & d
+        \end{pmatrix}\Biggr) &= \delta\Biggl(\begin{pmatrix}
+          a & 0 \\
+          c & d
+        \end{pmatrix}\Biggr) + \delta\Biggl(\begin{pmatrix}
+        0 & b \\
+        c & d 
+        \end{pmatrix}\Biggr) \\
+        &= \delta\Biggl(\begin{pmatrix}
+        a & 0 \\
+        c & 0 
+        \end{pmatrix}\Biggr) + \delta\Biggl(\begin{pmatrix}
+        a & 0 \\
+        0 & d 
+        \end{pmatrix}\Biggr) + \delta\Biggl(\begin{pmatrix}
+        0 & b \\
+        c & 0 
+        \end{pmatrix}\Biggr) + \delta\Biggl(\begin{pmatrix}
+        0 & b \\
+        0 & d 
+        \end{pmatrix}\Biggr) \\
+        &= 0 + ad + (-bc) + 0 \\
+        &= ad - bc = \det(A)
+      \end{align*}
+      with the third step following from the second using identical techniques to the previous cases. \\
+      Thus, $\delta(A) = \det(A)$ for all $A \in \MM_{2 \times 2}(\FF)$.
+    \end{proof}
+  \end{solution}
+
+  \newpage
+
+  \colorbox{red}{\underline{$4.2.7$}:}
+  \begin{solution}
+    \[
+      \begin{vmatrix}
+        0 & 1 & 2 \\
+        -1 & 0 & -3 \\
+        2 & 3 & 0 
+      \end{vmatrix}
+      = \begin{vmatrix}
+        1 & 2 \\
+        3 & 0 
+      \end{vmatrix}
+      + 3\begin{vmatrix}
+        0 & 1 \\
+        2 & 3
+      \end{vmatrix}
+      = -6 + 3(-2) = \boxed{-12}
+    \]
+  \end{solution}
+
+  \colorbox{red}{\underline{$4.2.8$}:}
+  \begin{solution}
+    \[
+      \begin{vmatrix}
+        1 & 0 & 2 \\
+        0 & 1 & 5 \\
+        -1 & 3 & 0 
+      \end{vmatrix}
+      = -1\begin{vmatrix}
+        0 & 2 \\
+        1 & 5
+      \end{vmatrix}
+      -3 \begin{vmatrix}
+        1 & 2 \\
+        0 & 5
+      \end{vmatrix}
+      = -1(-2) - 3(5) = \boxed{-13}
+    \]
+  \end{solution}
+
+  \colorbox{red}{\underline{$4.2.14$}:}
+  \begin{solution}
+    \[
+      \begin{vmatrix}
+        2 & 3 & 4 \\
+        5 & 6 & 0 \\
+        7 & 0 & 0
+      \end{vmatrix}
+      = 7\begin{vmatrix}
+        3 & 4 \\
+        6 & 0 
+      \end{vmatrix}
+      = 7(-24) = \boxed{-168}
+    \]
+  \end{solution}
+
+  \colorbox{red}{\underline{$4.2.18$}:}
+  \begin{solution}
+    Consider the sequence of elementary row operations 
+    \[
+      A = \begin{pmatrix}
+        1 & -2 & 3 \\
+        -1 & 2 & -5 \\
+        3 & -1 & 2
+      \end{pmatrix}
+      \xrightarrow{r_1 \to r_1 + r_2}
+      \begin{pmatrix}
+        0 & 0 & -2 \\
+        -1 & 2 & -5 \\
+        3 & -1 & 2
+      \end{pmatrix}
+      = \tilde{A}
+    \]
+    so $\det(A) = \det(\tilde{A})$. Then,
+    \[
+      \det(A) = \det(\tilde{A}) = \begin{vmatrix}
+        0 & 0 & -2 \\
+        -1 & 2 & -5 \\
+        3 & -1 & 2
+      \end{vmatrix} 
+      = -2\begin{vmatrix}
+        -1 & 2 \\ 3 & -1
+      \end{vmatrix}
+      = -2(-5) = \boxed{10}
+    \]
+  \end{solution}
+
+  \colorbox{red}{\underline{$4.2.23$}:}
+  \begin{solution}
+    \begin{proof}
+      We will prove this via induction on $n$ for $A \in \MM_{n \times n}(\FF)$. Consider the first non-trivial value of $n$, $n = 2$ and let $A \in \MM_{n \times n}(\FF)$ be any square upper-triangular matrix: 
+      \[
+        A = \begin{pmatrix}
+          a & b \\
+          0 & c
+        \end{pmatrix}
+      \]
+      so $\det(A) = ac$ is the product of its diagonal entries. Thus, for $n = 2$ our proposition is true and we can now consider $n = 2$ as the base case. Now, suppose that for $n = k \geq 2$ the determinant of a $k \times k$ upper-triangular matrix is the product of its diagonal entries. We must now show this is true for $n = k+1$. Let $A \in \MM_{(k+1) \times (k+1)}(\FF)$ and $\tilde{A} \in \MM_{k \times k}(\FF)$ so that 
+      \[
+        A = \begin{pmatrix}
+          a_{11} & \cdots & a_{1(k+1)} \\
+          \vdots & \ddots & \vdots \\
+          0 & \cdots & a_{(k+1)(k+1)}
+        \end{pmatrix}
+        \mand 
+        \tilde{A} = \begin{pmatrix}
+          a_{11} & \cdots & a_{1k} \\
+          \vdots & \ddots & \vdots \\
+          0 & \cdots & a_{kk}
+        \end{pmatrix}
+      \]
+      where $A, \tilde{A}$ are both upper triangular. Now, we consider the determinant of $A$ found by cofactor expansion across the last row (the cofactor sign is $(-1)^{2(k+1)} = 1$) 
+      \[
+        \det(A) = a_{(k+1)(k+1)}\begin{vmatrix}
+          a_{11} & \cdots & a_{1k} \\
+          \vdots & \ddots & \vdots \\
+          0 & \cdots & a_{kk}
+        \end{vmatrix}
+        = a_{(k+1)(k+1)}\det(\tilde{A}) = a_{(k+1)(k+1)}a_{kk} \cdots a_{22}a_{11}
+      \]
+      by the induction hypothesis. Thus, the determinant of any upper triangular square matrix is the product of its diagonal entries.
+    \end{proof}
+  \end{solution}
+
+
+  \colorbox{red}{\underline{$4.3.12$}:}
+  \begin{solution}
+    \begin{proof}
+      Let $Q \in \MM_{n \times n}(\FF)$ be orthogonal such that $QQ^{T} = I$. Then, 
+      \begin{align*}
+        \det(I) = \det(QQ^{T}) &= \det(Q) \cdot \det(Q^{T}) \tag{Thm~4.7} \\
+        &= \det(Q) \cdot \det(Q) \tag{Thm~4.8} \\
+        &= \left[\det(Q)\right]^{2} = 1 \\
+        &\Rightarrow (\det(Q) - 1)(\det(Q) + 1) = 0
+      \end{align*}
+      and hence either $\det(Q) = 1$ or $\det(Q) = -1$.
+    \end{proof}
+  \end{solution}
+
+  \colorbox{red}{\underline{$4.3.15$}:}
+  \begin{solution}
+    \begin{proof}
+      Let $A, B \in \MM_{n \times n}(\FF)$ such that $A$ is similar to $B$. That is, there exists some invertible $P \in \MM_{n \times n}(\FF)$ such that $B = P^{-1}AP$. But 
+      \begin{align*}
+        \det(B) = \det(P^{-1}AP) &= \det(P^{-1}) \cdot \det(AP) \tag{Thm~4.7} \\
+        &= \det(P^{-1}) \cdot \det(A) \cdot \det(P) \tag{Thm~4.7} \\
+        &= \frac{1}{\det(P)} \cdot \det(A) \cdot \det(P) \tag{Corr. to Thm~4.8} \\
+        &= \det(A)
+      \end{align*}
+      thus $\det(B) = \det(A)$ as was to be shown.
+    \end{proof}
+  \end{solution}
+
+  \newpage 
+
+  \colorbox{red}{\underline{$4.3.24$}:}
+  \begin{solution}
+    \begin{proof}
+      Let $A$ be the matrix with $-1$ on the subdiagonal, last column $(a_0, \dots, a_{n-1})^T$, and zeros elsewhere, and consider $\tilde{A} = A + tI$ so 
+      \[
+        \tilde{A} = A + tI = \begin{pmatrix}
+          t & 0 & 0 & \cdots & 0 & a_0 \\
+          -1 & t & 0 & \cdots & 0 & a_1 \\
+          0 & -1 & t & \cdots & 0 & a_2 \\
+          \vdots & \vdots & \vdots & & \vdots & \vdots \\
+          0 & 0 & 0 & \cdots & -1 & a_{n-1} + t
+        \end{pmatrix}.
+      \]
+      Now, we will prove that 
+      \[
+        \det(\tilde{A}) = t^n + t^{n-1}a_{n-1} + \cdots + t^{2}a_2 + t a_1 + a_0
+      \]
+      via induction on $n$ for all matrices $\tilde{A} \in \MM_{n \times n}(\FF)$ such that $\tilde{A}$ is of the necessary form. Consider $n = 2$ as our first non-trivial value of $n$ and hence our base case. Then, 
+      \[
+        \tilde{A} = \begin{pmatrix}
+          0 & a_0 \\
+          -1 & a_1
+        \end{pmatrix}
+        + \begin{pmatrix}
+          t & 0 \\
+          0 & t
+        \end{pmatrix}
+        = \begin{pmatrix}
+          t & a_0 \\
+          -1 & a_1 + t
+        \end{pmatrix}
+        \Rightarrow \det(\tilde{A}) = t^2 + ta_1 + a_0
+      \]
+      and so clearly the determinant of $\tilde{A}$ is in the desired form. Now, assume that for any $\overline{A} \in \MM_{k \times k}(\FF)$ of the necessary form, $\det(\overline{A}) = t^{k} + t^{k-1}a_{k-1} + \cdots + t a_{1} + a_0$. We must now show that for $A \in \MM_{(k + 1) \times (k + 1)}(\FF)$, $\det(A) = t^{k+1} + t^{k}a_{k} + \cdots + t a_{1} + a_0$. However, 
+      \begin{align*}
+        \det(A) &= \begin{vmatrix}
+          t & 0 & 0 & \cdots & 0 & a_0 \\
+          -1 & t & 0 & \cdots & 0 & a_1 \\
+          0 & -1 & t & \cdots & 0 & a_2 \\
+          \vdots & \vdots & \vdots & & \vdots & \vdots \\
+          0 & 0 & 0 & \cdots & -1 & a_{k} + t
+        \end{vmatrix} \\
+        &= t\begin{vmatrix}
+          t & 0 & 0 & \cdots & 0 & a_1 \\
+          -1 & t & 0 & \cdots & 0 & a_2 \\
+          0 & -1 & t & \cdots & 0 & a_3 \\
+          \vdots & \vdots & \vdots & & \vdots & \vdots \\
+          0 & 0 & 0 & \cdots & -1 & a_{k} + t
+        \end{vmatrix}
+        + (-1)^{(k+1)+1}a_0\begin{vmatrix}
+          -1 & t & 0 & \cdots & 0 \\
+          0 & -1 & t & \cdots & 0 \\
+          0 & 0 & -1 & \cdots & 0 \\
+          \vdots & \vdots & \vdots & \ddots & 0 \\
+          0 & 0 & 0 & \cdots & -1
+        \end{vmatrix} \\
+        &= t(t^{k} + t^{k-1}a_{k} + \cdots + t a_{2} + a_1) + (-1)^{k}(-1)^{k+2}a_0 \tag{IH with $a_1, \dots, a_k$; Problem~4.2.23} \\
+        &= t^{k+1} + t^{k}a_k + \cdots + t^{2}a_2 + t a_1 + a_0
+      \end{align*}
+      which was to be shown. 
+    \end{proof}
+  \end{solution}
+
+  \colorbox{red}{\underline{$4.4.2c$}:}
+  \begin{solution}
+    \[
+      \begin{vmatrix}
+        2 + i & -1 + 3i \\
+        1 - 2i & 3 - i
+      \end{vmatrix}
+      = (2 + i)(3 - i) - (-1 +3i)(1 - 2i) = (7 + i) - (5 + 5i) = \boxed{2 - 4i}
+    \]
+  \end{solution}
+
+  \newpage 
+
+  \colorbox{red}{\underline{$4.4.3c$}:}
+  \begin{solution}
+    \[
+      \begin{vmatrix}
+        0 & 1 & 2 \\
+        -1 & 0 & -3 \\
+        2 & 3 & 0
+      \end{vmatrix}
+      = \begin{vmatrix}
+        1 & 2 \\
+        3 & 0
+      \end{vmatrix}
+      + 3\begin{vmatrix}
+        0 & 1 \\
+        2 & 3
+      \end{vmatrix}
+      = -6 + 3(-2) = \boxed{-12}
+    \]
+  \end{solution}
+
+  \colorbox{red}{\underline{$4.4.3e$}:}
+  \begin{solution}
+    \[
+      \begin{vmatrix}
+        0 & 1 + i & 2 \\
+        -2i & 0 & 1 - i \\
+        3 & 4i & 0 
+      \end{vmatrix}
+      = 3\begin{vmatrix}
+        1 + i & 2 \\
+        0 & 1 - i
+      \end{vmatrix}
+      -4i\begin{vmatrix}
+        0 & 2 \\
+        -2i & 1 - i
+      \end{vmatrix}
+      = 3(2) - 4i(4i) = 6 + 16 = \boxed{22}
+    \]
+  \end{solution}
+
+\end{document}
