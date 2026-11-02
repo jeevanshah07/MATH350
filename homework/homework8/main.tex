@@ -1,0 +1,604 @@
+\documentclass{exam}
+\usepackage{../../shah350}
+
+\hypersetup{colorlinks=true, linktoc=section, linkcolor=blue}
+
+\pagestyle{headandfoot}
+\firstpageheadrule
+\runningheadrule
+\firstpageheader{Prof. Lepowsky \\ Linear Algebra}{Homework \#8}{\href{https://github.com/jeevanshah07/MATH350/blob/main/homework/homework8/main.tex}{\underline{Source}} \\ Jeevan Shah}
+\runningheader{Linear Algebra \\ Homework \#8}{}{Shah}
+\firstpagefooter{}{\thepage}{}
+\runningfooter{ }{\thepage}{ }
+
+\printanswers
+
+% 5.1.4c,d; 5.1.5f; 5.1.9; 5.1.10; 5.2.2d,f; 5.2.3d; 5.2.13; 5.2.21; 5.2.22
+
+\begin{document}
+  \begin{problem}{5.1.4}
+    \begin{parts}
+      \setcounter{partno}{2}
+      \part \begin{enumerate}[label=\roman*.)]
+        \item The characteristic polynomial for $A$ is 
+        \[
+          \lambda^2 - 1 = 0 \Rightarrow \lambda = \pm 1
+        \]
+        \item For $\lambda = 1$: 
+        \[
+          A - I = \begin{pmatrix}
+            i - 1 & 1 \\
+            2 & -1 - i
+          \end{pmatrix}
+          \Rightarrow \begin{cases}
+            (i-1)x_1 + x_2 &= 0 \\
+            2x_1 + (-1 - i)x_2 &= 0
+          \end{cases}
+          \Rightarrow x_2 = (1 - i)x_1
+          \Rightarrow X_1 = t\begin{pmatrix}
+            1 \\ 1 - i
+          \end{pmatrix}
+        \]
+        For $\lambda = -1$:
+        \[
+          A + I = \begin{pmatrix}
+            i + 1 & 1 \\
+            2 & 1 - i
+          \end{pmatrix}
+          \Rightarrow \begin{cases}
+            (i+1)x_1 + x_2 &= 0 \\
+            2x_1 + (1 - i)x_2 &= 0
+          \end{cases}
+          \Rightarrow x_2 = -(i + 1)x_1 
+          \Rightarrow X_2 = t\begin{pmatrix}
+            1 \\ -1 - i
+          \end{pmatrix}
+        \]
+        \item Since $X_1$ and $X_2$ are linearly independent, 
+        \[
+          \braces{\begin{pmatrix}
+            1 \\ 1 - i
+          \end{pmatrix}, \begin{pmatrix}
+            1 \\ -1 - i
+          \end{pmatrix}}
+        \]
+        is a basis for $\CC^2$.
+
+        \item It follows that 
+        \[
+          Q = \begin{pmatrix}
+            1 & 1 \\
+            1 - i & -1 - i
+          \end{pmatrix}
+          \mand 
+          D = \begin{pmatrix}
+            1 & 0 \\
+            0 & -1
+          \end{pmatrix}
+        \]
+        so $Q^{-1}$ exists since $\det(Q) = -2 \neq 0$ and $Q^{-1}AQ = D$.
+      \end{enumerate}
+
+      \part \begin{enumerate}[label=\roman*.)]
+        \item The characteristic polynomial is 
+        \begin{align*}
+          \det(A - \lambda I) = \begin{vmatrix}
+            2 - \lambda & 0 & -1 \\
+            4 & 1 - \lambda & -4 \\
+            2 & 0 & -\lambda - 1
+          \end{vmatrix}
+          &= (1 - \lambda)\Big((2 - \lambda)(-\lambda - 1) + 2\Big) = 0 \\
+          &\Rightarrow\, (1 - \lambda)(\lambda^2 - \lambda) = 0 \\
+          &\Rightarrow\, -\lambda(\lambda-1)^2 = 0 \\
+          &\Rightarrow\, \lambda = 0, 1 \mul{2}
+        \end{align*}
+        Hence $A$ has eigenvalues $\lambda = 0, 1$. 
+
+        \item For $\lambda = 0$:
+        \[
+          A - 0I = \begin{pmatrix}
+            2 & 0 & -1 \\
+            4 & 1 & -4 \\
+            2 & 0 & -1
+          \end{pmatrix}
+          \xrightarrow[r_2 \to r_2 - 2r_1]{r_3 \to r_3 - r_1}
+          \begin{pmatrix}
+            2 & 0 & -1 \\
+            0 & 1 & -2 \\
+            0 & 0 & 0
+          \end{pmatrix}
+          \Rightarrow \begin{cases}
+            x_3 &= t \\
+            x_2 - 2x_3 &= 0 \\
+            2x_1 - x_3 &= 0 
+          \end{cases}
+          \Rightarrow X_1 = t\begin{pmatrix}
+            1/2 \\ 2 \\ 1
+          \end{pmatrix}
+        \]
+        For $\lambda = 1$:
+        \[
+          A - I = \begin{pmatrix}
+            1 & 0 & -1 \\
+            4 & 0 & -4 \\
+            2 & 0 & -2 
+          \end{pmatrix}
+          \to 
+          \begin{pmatrix}
+            1 & 0 & -1 \\
+            0 & 0 & 0 \\
+            0 & 0 & 0
+          \end{pmatrix}
+          \Rightarrow \begin{cases}
+            x_3 &= t \\
+            x_2 &= s \\
+            x_1 - x_3 &= 0
+          \end{cases}
+          \Rightarrow X_2 = t\begin{pmatrix}
+            1 \\ 0 \\ 1
+          \end{pmatrix}
+          + s\begin{pmatrix}
+            0 \\ 1 \\ 0
+          \end{pmatrix}
+        \]
+
+        \item Since eigenvectors corresponding to distinct eigenvalues are linearly independent (and the two vectors spanning the eigenspace for $\lambda = 1$ are independent), 
+        \[
+          \braces{\begin{pmatrix}
+            1/2 \\ 2 \\ 1
+          \end{pmatrix}, \begin{pmatrix}
+            1 \\ 0 \\ 1
+          \end{pmatrix}, \begin{pmatrix}
+            0 \\ 1 \\ 0
+          \end{pmatrix}}
+        \]
+        is a basis for $\RR^3$.
+
+        \item Hence 
+        \[
+          Q = \begin{pmatrix}
+            1/2 & 1 & 0 \\
+            2 & 0 & 1 \\
+            1 & 1 & 0
+          \end{pmatrix}
+          \mand 
+          D = \begin{pmatrix}
+            0 & 0 & 0 \\
+            0 & 1 & 0 \\
+            0 & 0 & 1
+          \end{pmatrix}
+        \]
+        and $\det(Q) = 0.5 \neq 0$ so $Q^{-1}$ exists and $D = Q^{-1}AQ$.
+      \end{enumerate}
+    \end{parts}
+  \end{problem}
+
+  \begin{problem}{5.1.5f}
+    Let $\gamma$ be the standard ordered basis for $P_3(\RR)$ so 
+    \[
+      [T]_\gamma = \begin{pmatrix}
+        1 & 0 & 0 & 0 \\
+        1 & 3 & 4 & 8 \\
+        0 & 0 & 1 & 0 \\
+        0 & 0 & 0 & 1
+      \end{pmatrix}.
+    \]
+    Then the characteristic polynomial is 
+    \[
+      \det([T]_\gamma - \lambda I) = \begin{vmatrix}
+        1 - \lambda & 0 & 0 & 0 \\
+        1 & 3 - \lambda & 4 & 8 \\
+        0 & 0 & 1 - \lambda & 0 \\
+        0 & 0 & 0 & 1 - \lambda 
+      \end{vmatrix}
+      = (1 - \lambda)\begin{vmatrix}
+        3 - \lambda & 4 & 8 \\
+        0 & 1 - \lambda & 0 \\
+        0 & 0 & 1 - \lambda 
+      \end{vmatrix}
+      = (1 - \lambda)^3(3 - \lambda) = 0
+    \]
+    so $T$ has eigenvalues $1 \mul{3}$ and $3$. For $\lambda = 1$:
+    \[
+      [T]_\gamma - I = \begin{pmatrix}
+        0 & 0 & 0 & 0 \\
+        1 & 2 & 4 & 8 \\
+        0 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 0 
+      \end{pmatrix}
+      \Rightarrow \begin{cases}
+        x_4 &= t \\
+        x_3 &= r \\
+        x_1 + 2x_2 + 4x_3 + 8x_4 &= 0 \Rightarrow x_2 = -4t - 2r - \frac{1}{2}s\\
+        x_1 &= s
+      \end{cases}
+    \]
+    Hence 
+    \[
+      X = s\begin{pmatrix}
+        1 \\ -\frac{1}{2} \\ 0 \\ 0 
+      \end{pmatrix}
+      + r\begin{pmatrix}
+        0 \\ -2 \\ 1 \\ 0
+      \end{pmatrix}
+      + t\begin{pmatrix}
+        0 \\ -4 \\ 0 \\ 1
+      \end{pmatrix}.
+    \]
+    Now, for $\lambda = 3$: 
+    \[
+      [T]_\gamma - 3I = \begin{pmatrix}
+        -2 & 0 & 0 & 0 \\
+        1 & 0 & 4 & 8 \\
+        0 & 0 & -2 & 0 \\
+        0 & 0 & 0 & -2 
+      \end{pmatrix}
+      \to \begin{pmatrix}
+        1 & 0 & 0 & 0 \\
+        1 & 0 & 4 & 8 \\
+        0 & 0 & 1 & 0 \\
+        0 & 0 & 0 & 1
+      \end{pmatrix}
+      \to \begin{pmatrix}
+        1 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 0 \\
+        0 & 0 & 1 & 0 \\
+        0 & 0 & 0 & 1
+      \end{pmatrix}
+      \Rightarrow \begin{cases}
+        x_4 &= 0 \\
+        x_3 &= 0 \\
+        x_2 &= t \\
+        x_1 &= 0
+      \end{cases}
+    \]
+    Hence, 
+    \[
+      X = t\begin{pmatrix}
+        0 \\ 1 \\ 0 \\ 0
+      \end{pmatrix}
+    \]
+    Thus, the ordered basis is $\beta = \braces{1 - \frac{x}{2}, x^2 - 2x, x^3 - 4x, x}$ and 
+    \[
+      [T]_\beta = \begin{pmatrix}
+        1 & 0 & 0 & 0 \\
+        0 & 1 & 0 & 0 \\
+        0 & 0 & 1 & 0 \\
+        0 & 0 & 0 & 3
+      \end{pmatrix}
+    \]
+    is clearly diagonal.
+  \end{problem}
+
+  \begin{problem}{5.1.9}
+    \begin{parts}
+      \part \begin{proof}
+        $(\Rightarrow)$ By way of the contrapositive assume that $0$ is an eigenvalue of $T$. It follows by definition that $\det(A - 0I) = \det(A) = 0$ where $A = [T]_\beta$ for any ordered basis $\beta$. However, it then follows that $A$ is not invertible by the Corollary to Thm~4.7 and so $T$ cannot be invertible by Thm~2.18. \\
+        $(\Leftarrow)$ Conversely, suppose that $0$ is not an eigenvalue of $T$ and, for the sake of contradiction, that $T$ is not invertible. Then $A = [T]_\beta$ is not invertible for any ordered basis $\beta$ by Thm~2.18, so $\det(A) = 0$ by the Corollary to Thm~4.7. Hence $\det(A - 0I) = 0$, so $0$ is a root of the characteristic polynomial of $T$ and thus an eigenvalue of $T$, a contradiction. Therefore $T$ is invertible.
+      \end{proof}
+
+      \part \begin{proof}
+        $(\Rightarrow)$ Let $T: V \to V$ be an invertible linear operator such that $\lambda^{-1} \in \FF$ is an eigenvalue of $T^{-1}$ (here $\lambda \neq 0$ by part $(a)$). By definition it follows that there exists some nonzero $w \in V$ such that 
+        \[
+          T^{-1}(w) = \lambda^{-1}w \Rightarrow T(T^{-1}(w)) = T(\lambda^{-1}w) \Rightarrow w = \lambda^{-1}T(w) \Rightarrow \lambda w = T(w)
+        \]
+        and hence $\lambda$ must be an eigenvalue of $T$. \\
+        $(\Leftarrow)$ Conversely we may follow an almost identical argument assuming $\lambda$ is an eigenvalue for $T$ with eigenvector $w \neq 0$ (note $\lambda \neq 0$ by part $(a)$): 
+        \[
+          T(w) = \lambda w \Rightarrow T^{-1}(T(w)) = T^{-1}(\lambda w) \Rightarrow w = \lambda T^{-1}(w) \Rightarrow \lambda^{-1} w = T^{-1}(w)
+        \]
+        and hence $\lambda^{-1}$ is an eigenvalue for $T^{-1}$.
+      \end{proof}
+    \end{parts}
+  \end{problem}
+
+  \begin{problem}{5.1.10}
+    \begin{proof}
+      Let $M \in \MM_{n \times n}(\FF)$ be any upper triangular matrix. Then, 
+      \[
+        \det(M - \lambda I) = \begin{vmatrix}
+          a_{11} - \lambda & a_{12} & a_{13} & \cdots & a_{1n} \\
+          0 & a_{22} - \lambda & a_{23} & \cdots & a_{2n}  \\
+          0 & 0 & a_{33} - \lambda & \cdots & a_{3n} \\
+          \vdots & \vdots & \vdots & \ddots & \vdots \\
+          0 & 0 & 0 & \cdots & a_{nn} - \lambda
+        \end{vmatrix}
+        = (a_{11} - \lambda)(a_{22} - \lambda) \cdots (a_{nn} - \lambda)
+      \]
+      using the fact that the determinant of any upper triangular matrix is the product of its diagonal entries (Exercise~$4.2.23$). Hence, the eigenvalues of $M$ are exactly its diagonal entries.
+    \end{proof}
+  \end{problem}
+
+  \newpage 
+
+  \begin{problem}{5.2.2}
+    \begin{parts}
+      \setcounter{partno}{3}
+      \part We start by finding the characteristic polynomial 
+      \begin{align*}
+        \det(A - \lambda I) = \begin{vmatrix}
+          7 - \lambda & -4 & 0 \\
+          8 & -5 - \lambda & 0 \\
+          6 & -6 & 3 - \lambda
+        \end{vmatrix}
+        &= (3 - \lambda)\Big((7 - \lambda)(-5 - \lambda) + 32\Big) \\
+        &= (3 - \lambda)(\lambda^2 - 2\lambda - 3) \\
+        &= (3 - \lambda)(\lambda + 1)(\lambda - 3) = 0 \\
+        &\Rightarrow\, \lambda = 3 \mul{2}, -1
+      \end{align*}
+      So clearly the characteristic polynomial splits over $\RR$. For $\lambda_1 = 3$: 
+      \[
+        A - 3I = \begin{pmatrix}
+          4 & -4 & 0 \\
+          8 & -8 & 0 \\
+          6 & -6 & 0 
+        \end{pmatrix}
+        \to \begin{pmatrix}
+          1 & -1 & 0 \\
+          0 & 0 & 0 \\
+          0 & 0 & 0 
+        \end{pmatrix}
+        \Rightarrow \begin{cases}
+          x_3 &= t \\
+          x_2 &= r \\
+          x_1 &= x_2
+        \end{cases}
+        \Rightarrow X = r\begin{pmatrix}
+          1 \\ 1 \\ 0
+        \end{pmatrix}
+        + t\begin{pmatrix}
+          0 \\ 0 \\ 1
+        \end{pmatrix}
+      \]
+      thus 
+      \[
+        E_{\lambda_{1}} = \braces{
+          r\begin{pmatrix}
+            1 \\ 1 \\ 0
+          \end{pmatrix}
+          + t\begin{pmatrix}
+            0 \\ 0 \\ 1
+          \end{pmatrix}
+          \mid r, t \in \RR
+        }.
+      \]
+      For $\lambda_2 = -1$: 
+      \[
+          A + I = \begin{pmatrix}
+            8 & -4 & 0 \\
+            8 & -4 & 0 \\
+            6 & -6 & 4
+          \end{pmatrix}
+          \to \begin{pmatrix}
+            8 & -4 & 0 \\
+            0 & 0 & 0 \\
+            6 & -6 & 4
+          \end{pmatrix}
+          \Rightarrow \begin{cases}
+            6x_1 - 6x_2 + 4x_3 &= 0 \\
+            x_2 &= 2t \\
+            8x_1 - 4x_2 &= 0
+          \end{cases}
+          \Rightarrow X = t\begin{pmatrix}
+            1 \\ 2 \\ 3/2
+          \end{pmatrix}
+      \]
+      thus 
+      \[
+        E_{\lambda_{2}} = \braces{
+          t\begin{pmatrix}
+            1 \\ 2 \\ 3/2
+          \end{pmatrix}
+          \mid t \in \RR
+        }.
+      \]
+      Since $\dim(E_{\lambda_{1}}) = 2 = $ multiplicity of $\lambda_1 = 3$ and $\dim(E_{\lambda_{2}}) = 1 = $ multiplicity of $\lambda_2 = -1$, $A$ is diagonalizable. So, 
+      \[
+          Q = \begin{pmatrix}
+            1 & 0 & 1 \\
+            1 & 0 & 2 \\
+            0 & 1 & 3/2
+          \end{pmatrix}
+          \mand 
+          D = \begin{pmatrix}
+            3 & 0 & 0 \\
+            0 & 3 & 0 \\
+            0 & 0 & -1
+          \end{pmatrix}
+      \] 
+
+      \setcounter{partno}{5}
+      \part Since $A$ is upper triangular we know that its eigenvalues are its diagonal entries: $1 \mul{2}$ and $3$. Since $1, 3 \in \RR$ the characteristic polynomial must split over $\RR$. For $\lambda_1 = 1$: 
+      \[
+          A - I = \begin{pmatrix}
+            0 & 1 & 0 \\
+            0 & 0 & 2 \\
+            0 & 0 & 2
+          \end{pmatrix}
+          \to \begin{pmatrix}
+            0 & 1 & 0 \\
+            0 & 0 & 1 \\
+            0 & 0 & 0
+          \end{pmatrix}
+          \Rightarrow \begin{cases}
+            x_3 &= 0 \\
+            x_2 &= 0 \\
+            x_1 &= t 
+          \end{cases}
+          \Rightarrow X = t\begin{pmatrix}
+            1 \\ 0 \\ 0
+          \end{pmatrix}
+      \]
+      so 
+      \[
+          E_{\lambda_{1}} = \braces{
+            t\begin{pmatrix}
+              1 \\ 0 \\ 0
+            \end{pmatrix}
+            \mid t \in \RR
+          }.
+      \]
+      Since $\dim(E_{\lambda_{1}}) = 1 \neq 2 = $ multiplicity of $\lambda_1 = 1$, $A$ is not diagonalizable.
+    \end{parts}
+  \end{problem}
+
+  \begin{problem}{5.2.3d}
+    Let $\alpha$ be the standard ordered basis of $P_2(\RR)$. Then 
+    \begin{align*}
+      [T]_\alpha = \begin{pmatrix}
+        1 & 0 & 0 \\
+        1 & 1 & 1 \\
+        1 & 1 & 1
+      \end{pmatrix} = A
+      \Rightarrow \det(A - \lambda I) = \begin{vmatrix}
+        1 - \lambda & 0 & 0 \\
+        1 & 1 - \lambda & 1 \\
+        1 & 1 & 1 - \lambda
+      \end{vmatrix}
+      &= (1 - \lambda)\Big((1 - \lambda)^2 - 1\Big) \\
+      &= (1 - \lambda)(1 - 2\lambda + \lambda^2 - 1) \\
+      &= (1 - \lambda)(\lambda^2 - 2\lambda) = 0 \\
+      &\Rightarrow \lambda = 0, 1, 2
+    \end{align*}
+    Since $0, 1, 2 \in \RR$ the characteristic polynomial splits over $\RR$. Now, for $\lambda_1 = 0$: 
+    \[
+      A \to \begin{pmatrix}
+        1 & 0 & 0 \\
+        0 & 1 & 1 \\
+        0 & 0 & 0
+      \end{pmatrix}
+      \Rightarrow \begin{cases}
+        x_3 &= t \\
+        x_2 &= -t \\
+        x_1 &= 0 
+      \end{cases}
+      \Rightarrow E_{\lambda_{1}} = \braces{
+        t\begin{pmatrix}
+          0 \\ -1 \\ 1
+        \end{pmatrix}
+        \mid t \in \RR
+      }.
+    \]
+    For $\lambda_2 = 1$:
+    \[
+        A - I = \begin{pmatrix}
+          0 & 0 & 0 \\
+          1 & 0 & 1 \\
+          1 & 1 & 0 
+        \end{pmatrix}
+        \to \begin{pmatrix}
+          1 & 1 & 0 \\
+          1 & 0 & 1 \\
+          0 & 0 & 0
+        \end{pmatrix}
+        \to \begin{pmatrix}
+          1 & 1 & 0 \\
+          0 & -1 & 1 \\
+          0 & 0 & 0 
+        \end{pmatrix}
+        \Rightarrow \begin{cases}
+          x_3 &= t \\
+          x_2 &= t \\
+          x_1 &= -t 
+        \end{cases}
+        \Rightarrow E_{\lambda_{2}} = \braces{
+          t\begin{pmatrix}
+            -1 \\ 1 \\ 1
+          \end{pmatrix}
+          \mid t \in \RR
+        }.
+    \]
+    For $\lambda_3 = 2$: 
+    \begin{align*}
+      A - 2I &= \begin{pmatrix}
+        -1 & 0 & 0 \\
+        1 & -1 & 1 \\
+        1 & 1 & -1 
+      \end{pmatrix}
+      \to \begin{pmatrix}
+        1 & 0 & 0 \\
+        1 & -1 & 1 \\
+        1 & 1 & -1 
+      \end{pmatrix}
+      \to \begin{pmatrix}
+        1 & 0 & 0 \\
+        0 & -1 & 1 \\
+        0 & 1 & -1 
+      \end{pmatrix}
+      \to \begin{pmatrix}
+        1 & 0 & 0 \\
+        0 & -1 & 1 \\
+        0 & 0 & 0
+      \end{pmatrix} \\
+      &\Rightarrow\, \begin{cases}
+        x_3 &= t \\
+        x_2 &= t \\
+        x_1 &= 0 
+      \end{cases}
+      \Rightarrow E_{\lambda_{3}} = \braces{
+        t\begin{pmatrix}
+          0 \\ 1 \\ 1
+        \end{pmatrix}
+        \mid t \in \RR
+      }.
+    \end{align*}
+    Hence since the dimension of each eigenspace equals the multiplicity of its respective eigenvalue, $T$ is diagonalizable. Thus, for 
+    \[
+      \beta = \braces{x^2 - x, x^2 + x - 1, x + x^2}
+    \]
+    $[T]_\beta = \operatorname{diag}(0, 1, 2)$ is diagonal.
+  \end{problem}
+
+  \begin{problem}{5.2.13}
+    \begin{parts}
+      \part \begin{proof}
+        Consider an invertible linear operator $T$  and let $\lambda$ be one eigenvalue of $T$ so $\lambda^{-1}$ is an eigenvalue of $T^{-1}$. Consider the eigenspace of $T$ corresponding to $\lambda$, $E_{\lambda}$, and the eigenspace of $T^{-1}$ corresponding to $\lambda^{-1}$, $E'_{\lambda^{-1}}$ (note that $\lambda \neq 0$ by Exercise~5.1.9). Now, let $v \in E_\lambda$ be any vector in the eigenspace of $\lambda$, so that $T(v) = \lambda v$. Then, 
+        \[
+          T(v) = \lambda v \Rightarrow T^{-1}(T(v)) = T^{-1}(\lambda v) \Rightarrow v = \lambda T^{-1}(v) \Rightarrow \lambda^{-1} v = T^{-1}(v)
+        \]
+        so $v \in E'_{\lambda^{-1}}$ and since $v$ was arbitrary, $E_{\lambda} \subseteq E'_{\lambda^{-1}}$. An almost identical argument can be made by flipping $\lambda$ and $\lambda^{-1}$, $T$ and $T^{-1}$, and $E_\lambda$ and $E'_{\lambda^{-1}}$ to show $E'_{\lambda^{-1}} \subseteq E_\lambda$. Hence, $E_\lambda = E'_{\lambda^{-1}}$ as was to be shown. 
+      \end{proof}
+
+      \part \begin{proof}
+        It follows from $(a)$ that every eigenvector of $T$ is an eigenvector of $T^{-1}$, with eigenvalue replaced by its reciprocal. Suppose that $T$ is diagonalizable. Then there is a basis $\beta$ of $V$ consisting of eigenvectors of $T$, and by $(a)$ each vector of $\beta$ is also an eigenvector of $T^{-1}$. Hence $\beta$ is a basis of $V$ consisting of eigenvectors of $T^{-1}$, so $T^{-1}$ is diagonalizable.
+      \end{proof}
+    \end{parts}
+  \end{problem}
+
+  \begin{problem}{5.2.21}
+    \begin{proof}
+      $(\Rightarrow)$ Suppose that $V$ is the direct sum of $W_1, \dots, W_k$ and let $\beta_i$ be a basis for $W_i$. We claim that the list $\beta$ obtained by concatenating $\beta_1, \dots, \beta_k$ is a basis for $V$. It spans $V$ since $\sum W_i = V$. For independence, suppose a linear combination of the vectors in $\beta$ equals $0$ and let $w_i \in W_i$ be the part of that combination coming from $\beta_i$, so $w_1 + \cdots + w_k = 0$. Then for each $j$,
+      \[
+        w_j = -\sum_{i \neq j} w_i \in W_j \cap \sum_{i \neq j} W_i = \braces{0},
+      \]
+      so every $w_j = 0$, and since each $\beta_i$ is linearly independent, every coefficient is $0$. Hence $\beta$ is a basis for $V$. In particular $\beta$ has no repeated vectors, so
+      \[
+        \dim(V) = |\beta| = \sum_{i=1}^{k} |\beta_i| = \sum_{i=1}^{k} \dim(W_i).
+      \] \\
+      $(\Leftarrow)$ Now suppose that $\dim(V) = \sum_{i=1}^{k} \dim(W_i)$ and let $\beta$ be the list obtained by concatenating $\beta_1, \dots, \beta_k$ where each $\beta_i$ is a basis for $W_i$. Since $\sum W_i = V$, clearly $\beta$ spans $V$, and since $\beta$ has exactly $\sum_{i=1}^{k} \dim(W_i) = \dim(V)$ vectors, $\beta$ must be a basis for $V$. In particular $\beta$ is linearly independent. Now, consider $x \in W_j \cap \sum_{i \neq j} W_i$ so
+      \[
+        x = a_1 v_1 + \cdots + a_m v_m \mand x = b_1 u_1 + \cdots + b_p u_p
+        \Rightarrow 0 = (a_1 v_1 + \cdots + a_m v_m) - (b_1 u_1 + \cdots + b_p u_p)
+      \]
+      for $v_1, \dots, v_m \in \beta_j$ and $u_1, \dots, u_p \in \bigcup_{i \neq j} \beta_i$ and scalars $a_1, \dots, a_m, b_1, \dots, b_p \in \FF$. The vectors $v_1, \dots, v_m, u_1, \dots, u_p$ are distinct vectors of $\beta$, so since $\beta$ is linearly independent all of the scalars must be $0$. In particular $a_1 = \cdots = a_m = 0$ and so $x = 0$. Thus $W_j \cap \sum_{i \neq j} W_i = \braces{0}$ for every $j$, and so $V$ is the direct sum of $W_1, \dots, W_k$, as was to be shown.
+    \end{proof}
+  \end{problem}
+
+  \begin{problem}{5.2.22}
+    \begin{proof}
+      Define $W_i = \Span{\beta_i}$ so $W_i \subseteq V$. Since $\beta_i \cap \beta_j = \varnothing$ for $i \neq j$, then $|\beta| = \sum|\beta_i|$ but $|\beta| = \dim(V)$, and $|\beta_i| = \dim(W_i)$ since $\beta_i$ is linearly independent (being a subset of the basis $\beta$) and spans $W_i$, so 
+      \[
+        \dim(V) = |\beta| = \sum|\beta_i| = \sum\dim(W_i).
+      \]
+      As well, clearly 
+      \[
+        \sum_{i = 1}^{k} W_i = V
+      \]
+      since $\beta_i$ partition $\beta$ so by exercise $(5.2.21)$, 
+      \[
+        V = W_1 \oplus \cdots \oplus W_k = \Span{\beta_1} \oplus \cdots \oplus \Span{\beta_k}
+      \]
+      as was to be shown.
+    \end{proof}
+  \end{problem}
+\end{document}

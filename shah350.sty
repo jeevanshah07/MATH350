@@ -14,6 +14,7 @@
 \usepackage{nameref}
 \usepackage[x11names]{xcolor}
 \usepackage[most]{tcolorbox}
+\usepackage{enumitem}
 
 \pgfplotsset{compat=1.18}
 \printanswers
@@ -42,17 +43,22 @@
 \newenvironment{impbox}[1]{\begin{tcolorbox}[colback=LightSteelBlue2, breakable, sharp corners, title=#1]}{\end{tcolorbox}}
 \newenvironment{defbox}[1]{\begin{tcolorbox}[colback=green!25!white, breakable, sharp corners, title=#1]}{\end{tcolorbox}}
 
+\newenvironment{problem}[1]{
+  \colorbox{red}{\underline{\ensuremath{#1}}:}
+  \begin{solution}}
+  {\end{solution}}
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{proposition}{Proposition}[section]
 \newtheorem{lemma}{Lemma}[section]
 \newtheorem{remark}{Remark}
 
-\newcommand{\Span}[1]{\ensuremath\text{Span}\braces{#1}}
+\newcommand{\Span}[1]{\ensuremath\text{span}\left({#1}\right)}
 \newcommand{\rank}[1]{\ensuremath\text{rank}\left(#1\right)}
 \newcommand{\Col}[1]{\ensuremath\text{Col}\left(#1\right)}
 \newcommand{\Row}[1]{\ensuremath\text{Row}\left(#1\right)}
 \newcommand{\Nul}[1]{\ensuremath\text{Nul}\left(#1\right)}
 \newcommand{\nul}[1]{\ensuremath\text{nul}\left(#1\right)}
+\newcommand{\mul}[1]{\ensuremath{\,(\text{mul. } #1})}
 
 \newenvironment{amatrix}[1]{%
   \left(\begin{array}{@{}*{#1}{c}|c@{}}
