@@ -1,0 +1,401 @@
+\documentclass{exam}
+\usepackage{../../shah350}
+
+\hypersetup{colorlinks=true, linktoc=section, linkcolor=blue}
+
+\pagestyle{headandfoot}
+\firstpageheadrule
+\runningheadrule
+\firstpageheader{Prof. Lepowsky \\ Linear Algebra}{Homework \#10}{\href{https://github.com/jeevanshah07/MATH350/blob/main/homework/homework10/main.tex}{\underline{Source}} \\ Jeevan Shah}
+\runningheader{Linear Algebra \\ Homework \#10}{}{Shah}
+\firstpagefooter{}{\thepage}{}
+\runningfooter{ }{\thepage}{ }
+
+\printanswers
+
+% 7.1.2a, 2c
+% 3a-b 
+% 7.2 4a
+
+\begin{document}
+  \begin{problem}{7.1.2a}
+    We start by finding the eigenvalues of $A$ 
+    \[
+      \det(A - tI) = \begin{vmatrix}
+        1 - t & 1 \\
+        -1 & 3 - t
+      \end{vmatrix}
+      = (1 - t)(3 - t) + 1 = (t - 2)^2 = 0 \Rightarrow t = 2 \mul{2}
+    \]
+    so $\lambda = 2 \mul{2}$. Now we find the eigenvectors associated with $\lambda = 2$ 
+    \[
+      A - 2I = \begin{pmatrix}
+        -1 & 1 \\
+        -1 & 1
+      \end{pmatrix}
+      \to \begin{pmatrix}
+        -1 & 1 \\
+        0 & 0
+      \end{pmatrix}
+      \Rightarrow \begin{cases}
+        x_2 &= t \\
+        x_1 &= t
+      \end{cases}
+      \Rightarrow X = t\begin{pmatrix}
+        1 \\ 1
+      \end{pmatrix}
+    \]
+    Taking $t = 1$ we have $w = (1, 1)^{T}$ is our eigenvector. Now, any solution to $(A - 2I)v = w$ will be our generalized eigenvector so  
+    \[
+      \begin{amatrix}{2}
+        -1 & 1 & 1 \\
+        -1 & 1 & 1
+      \end{amatrix}
+      \to \begin{amatrix}{2}
+        -1 & 1 & 1 \\
+        0 & 0 & 0 
+      \end{amatrix}
+      \Rightarrow \begin{cases}
+        x_2 &= t \\
+        x_1 &= t - 1
+      \end{cases}
+      \Rightarrow X = t\begin{pmatrix}
+        1 \\ 1
+      \end{pmatrix}
+      - \begin{pmatrix}
+        1 \\ 0
+      \end{pmatrix}
+    \]
+    hence for $t = 1$, $(0, 1)^{T}$ is our generalized eigenvector. Thus, 
+    \[
+      \beta = \braces{
+        \begin{pmatrix}
+          1 \\ 1
+        \end{pmatrix},
+        \begin{pmatrix}
+          0 \\ 1
+        \end{pmatrix}
+      }
+    \]
+    is our basis and 
+    \[
+        J = \begin{pmatrix}
+          2 & 1 \\
+          0 & 2
+        \end{pmatrix}
+    \]
+    is a Jordan canonical form for $A$. It follows that if 
+    \[
+        Q = \begin{pmatrix}
+          1 & 0 \\
+          1 & 1 
+        \end{pmatrix}
+    \]
+    then $Q^{-1}AQ = J$.
+  \end{problem}
+
+  \begin{problem}{7.1.2c}
+    We start by finding the eigenvalues of $A$
+    \[
+      \det(A - tI) = \begin{vmatrix}
+        11 - t & -4 & -5 \\
+        21 & -8 - t & -11 \\
+        3 & -1 & -t
+      \end{vmatrix}
+      = -t^3 + 3t^2 - 4 = -(t + 1)(t - 2)^2 = 0 \Rightarrow t = -1, \; 2 \mul{2}
+    \]
+    so $\lambda_1 = -1$ and $\lambda_2 = 2 \mul{2}$. We first find the eigenvectors associated with $\lambda_2 = 2$
+    \[
+      A - 2I = \begin{pmatrix}
+        9 & -4 & -5 \\
+        21 & -10 & -11 \\
+        3 & -1 & -2
+      \end{pmatrix}
+      \to \begin{pmatrix}
+        3 & -1 & -2 \\
+        0 & -1 & 1 \\
+        0 & 0 & 0
+      \end{pmatrix}
+      \Rightarrow \begin{cases}
+        x_3 &= t \\
+        x_2 &= t \\
+        x_1 &= t
+      \end{cases}
+      \Rightarrow X = t\begin{pmatrix}
+        1 \\ 1 \\ 1
+      \end{pmatrix}
+    \]
+    Taking $t = 1$ we have $w = (1, 1, 1)^{T}$ is our eigenvector. Since the eigenspace is only 1-dimensional while the multiplicity of $\lambda_2$ is 2, we need a generalized eigenvector. Any solution to $(A - 2I)v = w$ will do, so
+    \[
+      \begin{amatrix}{3}
+        9 & -4 & -5 & 1 \\
+        21 & -10 & -11 & 1 \\
+        3 & -1 & -2 & 1
+      \end{amatrix}
+      \to \begin{amatrix}{3}
+        3 & -1 & -2 & 1 \\
+        0 & -1 & 1 & -2 \\
+        0 & 0 & 0 & 0
+      \end{amatrix}
+      \Rightarrow \begin{cases}
+        x_3 &= t \\
+        x_2 &= t + 2 \\
+        x_1 &= t + 1
+      \end{cases}
+      \Rightarrow X = t\begin{pmatrix}
+        1 \\ 1 \\ 1
+      \end{pmatrix}
+      + \begin{pmatrix}
+        1 \\ 2 \\ 0
+      \end{pmatrix}
+    \]
+    hence for $t = 0$, $v = (1, 2, 0)^{T}$ is our generalized eigenvector. Now for $\lambda_1 = -1$
+    \[
+      A + I = \begin{pmatrix}
+        12 & -4 & -5 \\
+        21 & -7 & -11 \\
+        3 & -1 & 1
+      \end{pmatrix}
+      \to \begin{pmatrix}
+        3 & -1 & 1 \\
+        0 & 0 & 1 \\
+        0 & 0 & 0
+      \end{pmatrix}
+      \Rightarrow \begin{cases}
+        x_3 &= 0 \\
+        x_2 &= 3t \\
+        x_1 &= t
+      \end{cases}
+      \Rightarrow X = t\begin{pmatrix}
+        1 \\ 3 \\ 0
+      \end{pmatrix}
+    \]
+    so taking $t = 1$, $u = (1, 3, 0)^{T}$ is an eigenvector for $\lambda_1 = -1$. Thus,
+    \[
+      \beta = \braces{
+        \begin{pmatrix}
+          1 \\ 1 \\ 1
+        \end{pmatrix},
+        \begin{pmatrix}
+          1 \\ 2 \\ 0
+        \end{pmatrix},
+        \begin{pmatrix}
+          1 \\ 3 \\ 0
+        \end{pmatrix}
+      }
+    \]
+    is our basis, where the first two vectors form the cycle for $\lambda_2 = 2$ and the last is the eigenvector for $\lambda_1 = -1$, and
+    \[
+        J = \begin{pmatrix}
+          2 & 1 & 0 \\
+          0 & 2 & 0 \\
+          0 & 0 & -1
+        \end{pmatrix}
+    \]
+    is a Jordan canonical form for $A$. It follows that if
+    \[
+        Q = \begin{pmatrix}
+          1 & 1 & 1 \\
+          1 & 2 & 3 \\
+          1 & 0 & 0
+        \end{pmatrix}
+    \]
+    then $Q^{-1}AQ = J$.
+  \end{problem}
+
+  \begin{problem}{7.1.3a}
+    Let $\beta$ be the standard ordered basis for $\mathcal{P}_2(\RR)$ so 
+    \[
+      [T]_\beta = \begin{pmatrix}
+        2 & -1 & 0 \\
+        0 & 2 & -2 \\
+        0 & 0 & 2
+      \end{pmatrix}
+    \]
+    so the characteristic polynomial is $f(t) = -(t - 2)^{3}$ and so $\lambda = 2$ is the only eigenvalue of $T$. Hence 
+    \[
+      \gamma = \braces{(T - 2I)^2(v), (T - 2I)v, v}
+    \]
+    is a Jordan canonical basis. We'll start with the highest power term from $\beta$, $x^2$, so
+    \begin{align*}
+      (T - 2I)(x^2) &= -2x \\
+      (T - 2I)(-2x) &= 2 \\
+      (T - 2I)(2) &= 0
+    \end{align*}
+    so $x^2 \to -2x \to 2 \to 0$ is a cycle of length $3$ and 
+    \[
+      \gamma = \braces{2, -2x, x^2}
+    \]
+    is our basis with 
+    \[
+      J = [T]_\gamma = \begin{pmatrix}
+        2 & 1 & 0 \\
+        0 & 2 & 1 \\
+        0 & 0 & 2
+      \end{pmatrix}
+    \]
+  \end{problem}
+
+  \begin{problem}{7.1.3b}
+    Let $\beta = \braces{1, t, t^2, e^t, te^t}$ be the standard ordered basis for $V$ so 
+    \[
+      [T]_\beta = \begin{pmatrix}
+        0 & 1 & 0 & 0 & 0 \\
+        0 & 0 & 2 & 0 & 0 \\
+        0 & 0 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 1 & 1 \\
+        0 & 0 & 0 & 0 & 1
+      \end{pmatrix}
+    \]
+    so the characteristic polynomial is $f(t) = -t^3(t - 1)^2$ and $\lambda_1 = 0 \mul{3}$, $\lambda_2 = 1 \mul{2}$. So, a basis for $K_{\lambda_{1}}$ will be $\beta_{1} = \braces{T^{2}(v), T(v), v}$. We know that $v$ is a generalized eigenvector and so it must be in $K_{\lambda_{1}} = \Span{1, t, t^2}$. We'll start with the highest degree term, $t^2$, so 
+    \begin{align*}
+      T(t^2) &= 2t \\
+      T(2t) &= 2 \\
+      T(2) &= 0 
+    \end{align*}
+    and thus $t^2 \to 2t \to 2 \to 0$ is a cycle of length $3$ and 
+    \[
+      \beta_1 = \braces{2, 2t, t^2}
+    \]
+    is a basis for $K_{\lambda_{1}}$. Now a basis for $K_{\lambda_{2}}$ will be $\beta_2 = \braces{(T - I)v, v}$ where $v$ is a generalized eigenvector in $K_{\lambda_{2}} = \Span{e^t, te^t}$. We'll start with $te^{t}$ so 
+    \begin{align*}
+      (T - I)(te^{t}) &= T(te^{t}) - I(te^{t}) = e^{t} \\
+      (T - I)e^t &= T(e^t) - I(e^t) = 0
+    \end{align*}
+    hence $te^{t} \to e^{t} \to 0$ is a cycle of length $2$ and 
+    \[
+      \beta_2 = \braces{e^t, te^{t}}
+    \]
+    is a basis for $K_{\lambda_2}$. Thus, 
+    \[
+      \gamma = \beta_{1} \cup \beta_2 = \braces{2, 2t, t^2, e^t, te^t}
+    \]
+    is a Jordan canonical basis for T and 
+    \[
+      J = [T]_\gamma = \begin{pmatrix}
+        0 & 1 & 0 & 0 & 0 \\
+        0 & 0 & 1 & 0 & 0 \\
+        0 & 0 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 1 & 1 \\
+        0 & 0 & 0 & 0 & 1
+      \end{pmatrix}
+    \]
+
+    \begin{proof}
+      Let $\beta = \braces{1, t, t^2, e^t, te^t}$. Suppose $a_1, a_2, a_3, a_4, a_5$ are scalars such that 
+      \begin{align*}
+        g(t) &= a_1 + a_2 t + a_3 t^2 + a_4 e^{t} + a_5 te^{t} = 0 \quad \text{for all } t \\
+        \Rightarrow g'(t) &= a_2 + 2a_3 t + a_4 e^t + a_5(e^t + te^t) = 0\\
+        \Rightarrow g''(t) &= 2a_3 + a_4 e^t + a_5(2e^t + te^t) = 0 \\
+        \Rightarrow g'''(t) &= a_4 e^t + a_5(3e^t + te^t) = 0 \\
+        \Rightarrow g''''(t) &= a_4 e^t + a_5(4e^t + te^t) = 0
+      \end{align*}
+      Now, let $t = 0$ so 
+      \[
+        \begin{cases}
+          a_1 + a_4 &= 0 \\
+          a_2 + a_4 + a_5 &= 0 \\
+          2a_3 + a_4 + 2a_5 &= 0 \\
+          a_4 + 3a_5 &= 0 \\
+          a_4 + 4a_5 &= 0 
+        \end{cases}
+      \]
+      and thus $a_1 = a_2 = a_3 = a_4 = a_5 = 0$ and so the only solution to the homogeneous equation is the trivial one and thus the set is linearly independent.
+    \end{proof}
+  \end{problem}
+
+  \begin{problem}{7.2.4a}
+    It follows from example $5$ that 
+    \[
+      J = \begin{pmatrix}
+        1 & 0 & 0 \\
+        0 & 2 & 1 \\
+        0 & 0 & 2
+      \end{pmatrix}
+    \]
+    so $A$ has eigenvalues $\lambda_1 = 1$ and $\lambda_2 = 2 \mul{2}$. For $\lambda_1 = 1$ we have 
+    \[
+      A - I = \begin{pmatrix}
+        -4 & 3 & -2 \\
+        -7 & 5 & -3 \\
+        1 & -1 & 1
+      \end{pmatrix}
+      \to \begin{pmatrix}
+        1 & -1 & 1 \\
+        -7 & 5 & -3 \\
+        -4 & 3 & -2
+      \end{pmatrix}
+      \to \begin{pmatrix}
+        1 & -1 & 1 \\
+        0 & -2 & 4 \\
+        0 & -1 & 2
+      \end{pmatrix}
+      \to \begin{pmatrix}
+        1 & -1 & 1 \\
+        0 & 1 & -2 \\
+        0 & 0 & 0 
+      \end{pmatrix}
+      \Rightarrow X = t\begin{pmatrix}
+        1 \\ 2 \\ 1
+      \end{pmatrix}
+    \]
+    so taking $t = 1$, $(1, 2, 1)^{T}$ is an eigenvector for $\lambda_1 = 1$. For $\lambda_2 = 2$ we have
+    \[
+      A - 2I = \begin{pmatrix}
+        -5 & 3 & -2 \\
+        -7 & 4 & -3 \\
+        1 & -1 & 0
+      \end{pmatrix}
+      \to \begin{pmatrix}
+        1 & -1 & 0 \\
+        0 & 1 & 1 \\
+        0 & 0 & 0
+      \end{pmatrix}
+      \Rightarrow X = t\begin{pmatrix}
+        -1 \\ -1 \\ 1
+      \end{pmatrix}
+    \]
+    so taking $t = 1$, $w = (-1, -1, 1)^{T}$ is an eigenvector for $\lambda_2 = 2$. Now we can find our generalized eigenvector by solving $(A - 2I)v = w$ for $v$
+    \[
+      \begin{aligned}
+        &\begin{amatrix}{3}
+          -5 & 3 & -2 & -1 \\
+          -7 & 4 & -3 & -1 \\
+          1 & -1 & 0 & 1
+        \end{amatrix}
+        \to \begin{amatrix}{3}
+          1 & -1 & 0 & 1 \\
+          -7 & 4 & -3 & -1 \\
+          -5 & 3 & -2 & -1
+        \end{amatrix} \\
+        &\to \begin{amatrix}{3}
+          1 & -1 & 0 & 1 \\
+          0 & -3 & -3 & 6 \\
+          0 & -2 & -2 & 4
+        \end{amatrix}
+        \to \begin{amatrix}{3}
+          1 & -1 & 0 & 1 \\
+          0 & 1 & 1 & -2 \\
+          0 & 0 & 0 & 0
+        \end{amatrix} \\
+        &\Rightarrow X = t\begin{pmatrix} -1 \\ -1 \\ 1 \end{pmatrix}
+        + \begin{pmatrix} -1 \\ -2 \\ 0 \end{pmatrix}
+      \end{aligned}
+    \]
+    so at $t = 0$, $(-1, -2, 0)^{T}$ is our generalized eigenvector. Hence 
+    \[
+      J = \begin{pmatrix}
+        1 & 0 & 0 \\
+        0 & 2 & 1 \\
+        0 & 0 & 2
+      \end{pmatrix}
+      \mand Q = \begin{pmatrix}
+        1 & -1 & -1 \\
+        2 & -1 & -2 \\
+        1 & 1 & 0
+      \end{pmatrix}
+    \]
+  \end{problem}
+
+
+\end{document}
