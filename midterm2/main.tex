@@ -1,0 +1,111 @@
+\documentclass{exam}
+\usepackage{../shah350}
+
+\hypersetup{colorlinks=true, linktoc=section, linkcolor=blue}
+
+\pagestyle{headandfoot}
+\firstpageheadrule
+\runningheadrule
+\firstpageheader{Prof. Lepowsky \\ Linear Algebra}{Exam \#2 Proofs}{Jeevan Shah}
+\runningheader{Linear Algebra \\ Exam \#2 Proofs}{}{Shah}
+\firstpagefooter{}{\thepage}{}
+\runningfooter{ }{\thepage}{ }
+
+\begin{document}
+
+\section{The Replacement Theorem}
+
+\begin{thm}{Replacement Theorem}
+  Let $V$ be a vector space over a field $\FF$. Assume $V$ is spanned by a subset $G$ containing exactly $n$ vectors, and let $L$ be a linearly independent subset of $V$ containing exactly $m$ vectors. Then $m \le n$, and there exists a subset $H \subseteq G$ containing exactly $n - m$ vectors such that $L \cup H$ spans $V$.
+\end{thm}
+
+\begin{proof}
+  We induct on $m$.
+
+  \textbf{Base case ($m = 0$).} Here $L = \varnothing$. Then $0 \le n$, and $H = G$ contains exactly $n - 0$ vectors with $L \cup H = G$ spanning $V$.
+
+  \textbf{Inductive step.} Assume the theorem holds for some $m \ge 0$, and let $L = \{v_1, \dots, v_{m+1}\}$ be a linearly independent subset of $V$ with $m + 1$ vectors. Put $L' = \{v_1, \dots, v_m\}$. Being a subset of $L$, $L'$ is linearly independent, so by the inductive hypothesis $m \le n$ and there is $H' = \{u_1, \dots, u_{n-m}\} \subseteq G$ such that $L' \cup H'$ spans $V$. In particular
+  \[
+    v_{m+1} = a_1 v_1 + \cdots + a_m v_m + b_1 u_1 + \cdots + b_{n-m} u_{n-m}
+  \]
+  for some scalars $a_i, b_j \in \FF$.
+  \begin{enumerate}[label=\textbf{Step \arabic*.}, leftmargin=*]
+    \item \emph{Show $m + 1 \le n$ and that some $b_j \neq 0$.} If $n - m = 0$, or if every $b_j = 0$, then $v_{m+1}$ is a linear combination of $v_1, \dots, v_m$, contradicting the linear independence of $L$. Hence $n - m \ge 1$, i.e.\ $m + 1 \le n$, and some $b_j \neq 0$.
+    \item \emph{Swap.} Reorder the $u_j$ so that $b_1 \neq 0$. Since $\FF$ is a field, $b_1^{-1}$ exists and
+      \[
+        u_1 = b_1^{-1}\bigl(v_{m+1} - a_1 v_1 - \cdots - a_m v_m - b_2 u_2 - \cdots - b_{n-m} u_{n-m}\bigr).
+      \]
+    \item \emph{Conclude.} Let $H = \{u_2, \dots, u_{n-m}\} \subseteq G$, so $H$ contains exactly $n - (m+1)$ vectors. By Step 2, $u_1 \in \Span{L \cup H}$, and of course $L' \cup H' \subseteq \Span{L \cup H}$ since $v_1, \dots, v_m, u_2, \dots, u_{n-m} \in L \cup H$. Therefore
+      \[
+        V = \Span{L' \cup H'} \subseteq \Span{L \cup H},
+      \]
+      so $L \cup H$ spans $V$. This completes the induction. \qedhere
+  \end{enumerate}
+\end{proof}
+
+\begin{remark}
+  The case $m = 1$ is the case $m = 0 \to 1$ of the inductive step: there $v_1 = b_1 u_1 + \cdots + b_n u_n$ with some $b_j \neq 0$, because $v_1 \neq 0$ (as $\{v_1\}$ is linearly independent).
+\end{remark}
+
+\section{Uniqueness of the Reduced Row-Echelon Form}
+
+Throughout, $A$, $B$, $R$, $S$ are $m \times n$ matrices over a field $\FF$, and $a_j$, $b_j$ denote the $j$th columns of $A$, $B$.
+
+\begin{lma}{Column Correspondence Principle}
+  Let $A$ and $B$ be row-equivalent. Then for all scalars $c_1, \dots, c_n \in \FF$,
+  \[
+    c_1 a_1 + \cdots + c_n a_n = 0 \iff c_1 b_1 + \cdots + c_n b_n = 0.
+  \]
+  Consequently, for any column index $k$, any set $J$ of column indices and any scalars $c_j$,
+  \[
+    a_k = \sum_{j \in J} c_j a_j \iff b_k = \sum_{j \in J} c_j b_j,
+  \]
+  and the columns $\{a_j : j \in J\}$ are linearly independent iff $\{b_j : j \in J\}$ are.
+\end{lma}
+
+\begin{proof}
+  Each elementary row operation is left multiplication by an invertible elementary matrix, so $B = PA$ for an invertible matrix $P$. The $j$th column of $B$ is $b_j = P a_j$, so
+  \[
+    \sum_j c_j b_j = \sum_j c_j P a_j = P\Bigl(\sum_j c_j a_j\Bigr).
+  \]
+  Since $P$ is invertible, the right-hand side is $0$ if and only if $\sum_j c_j a_j = 0$. For the consequences, apply this to the relation $a_k - \sum_{j \in J} c_j a_j = 0$ (a relation among the columns with coefficients $1$ on $a_k$ and $-c_j$ on $a_j$), and to relations among the columns indexed by $J$ only.
+\end{proof}
+
+\begin{lma}{Columns of an RREF matrix}
+  Let $R$ be in reduced row-echelon form with $r$ nonzero rows, whose leading $1$'s (pivots) lie in columns $j_1 < \cdots < j_r$. Then:
+  \begin{enumerate}[label=(\roman*)]
+    \item the pivot column $j_i$ is the standard vector $\e_i$;
+    \item every non-pivot column $j$ satisfies $\displaystyle \operatorname{col}_j(R) = \sum_{i \,:\, j_i < j} R_{ij}\, \e_i$;
+    \item column $j$ of $R$ is a pivot column if and only if it is not a linear combination of columns $1, \dots, j - 1$.
+  \end{enumerate}
+\end{lma}
+
+\begin{proof}
+  (i) holds by definition of RREF: the pivot of row $i$ is a $1$ and all other entries of its column are $0$.
+
+  (ii) Rows below row $r$ are zero. In row $i \le r$, all entries to the left of the pivot $j_i$ are $0$, so $R_{ij} \neq 0$ forces $j \ge j_i$, and for a non-pivot column $j \ne j_i$, hence $j > j_i$. So $\operatorname{col}_j(R) = \sum_{i \le r} R_{ij} \e_i = \sum_{j_i < j} R_{ij} \e_i$.
+
+  (iii) A non-pivot column is a combination of earlier columns by (ii). For a pivot column $j_i$, every earlier column is either $\e_k$ with $k < i$ (a pivot column) or, by (ii), a combination of such $\e_k$. So all earlier columns lie in $\Span{\e_1, \dots, \e_{i-1}}$, which does not contain $\e_i = \operatorname{col}_{j_i}(R)$.
+\end{proof}
+
+\begin{thm}{Uniqueness of RREF}
+  Let $A$ be an $m \times n$ matrix over a field $\FF$. Then $A$ is row-equivalent to exactly one matrix in reduced row-echelon form.
+\end{thm}
+
+\begin{proof}
+  \emph{Existence} is Gauss--Jordan elimination. For \emph{uniqueness}, let $R$ and $S$ be RREF matrices that are both row-equivalent to $A$. Row-equivalence is an equivalence relation, so $R$ and $S$ are row-equivalent to each other, and the Column Correspondence Principle applies to the pair $(R, S)$.
+  \begin{enumerate}[label=\textbf{Step \arabic*.}, leftmargin=*]
+    \item \emph{$R$ and $S$ have the same pivot columns.} The statement ``column $j$ is a linear combination of columns $1, \dots, j-1$'' holds in $R$ if and only if it holds in $S$, by the Column Correspondence Principle. By part (iii) of the second lemma, this statement characterizes the non-pivot columns in both matrices. So $R$ and $S$ have the same pivot columns $j_1 < \cdots < j_r$ (and the same $r$), and by part (i) of the second lemma $\operatorname{col}_{j_i}(R) = \e_i = \operatorname{col}_{j_i}(S)$.
+    \item \emph{$R$ and $S$ have the same non-pivot columns.} Let $j$ be a non-pivot column. By part (ii),
+      \[
+        \operatorname{col}_j(R) = \sum_{j_i < j} R_{ij}\, \operatorname{col}_{j_i}(R).
+      \]
+      By the Column Correspondence Principle, the same relation holds in $S$:
+      \[
+        \operatorname{col}_j(S) = \sum_{j_i < j} R_{ij}\, \operatorname{col}_{j_i}(S) = \sum_{j_i < j} R_{ij}\, \e_i = \operatorname{col}_j(R).
+      \]
+  \end{enumerate}
+  Thus all columns of $R$ and $S$ agree, i.e.\ $R = S$. \qedhere
+\end{proof}
+
+\end{document}
